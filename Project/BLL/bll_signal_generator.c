@@ -149,7 +149,7 @@ u16 BLL_Signal_Generator_Get_DAC_Val(void)
 }
 
 // 设置比例系数
-void BLL_Signal_Generator_Set_k(u16 temp_k)
+void BLL_Signal_Generator_Set_k(float temp_k)
 {
     k = temp_k;
 }

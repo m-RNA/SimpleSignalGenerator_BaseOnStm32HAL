@@ -9,8 +9,10 @@
 #define NPT 1024 // DAC采样点数
 
 void Signal_Generator_Init(void);
-u16 BLL_Signal_Generator_Get_DAC_Val(void);  // 返回当前DAC值
-void BLL_Signal_Generator_Set_k(u16 temp_k); // 设置比例系数
+
+u16 BLL_Signal_Generator_Get_DAC_Val(void); // 返回当前DAC值
+
+void BLL_Signal_Generator_Set_k(float temp_k); // 设置比例系数
 
 #endif
 
