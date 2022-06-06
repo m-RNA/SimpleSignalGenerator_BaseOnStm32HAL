@@ -48,12 +48,12 @@ void UI_Init(void)
   LCD_DisplayChineseString(24 * 4 + 16 + 3, 319 -24 -8, 9, 24, 5); // 显示 波形选择
 }
 
-void BLL_LCD_Updata_Show_Setting(void)
+void UI_Updata_Setting(void)
 {
     LCD_Updata_Setting_Flag = 1;
 }
 
-void LCD_Update_Task(void)
+void UI_Update_Task(void)
 {
     Task_Delay(90); // 每90ms 刷新一次
     
@@ -86,7 +86,7 @@ void LCD_Update_Task(void)
     LCD_SetTextColor(White);
 
     // 根据设置索引高亮对应的选项
-    switch(BLL_Get_Setting_Index())
+    switch(BLL_Set_Get_Setting_Index())
     {
     case 0: // 高亮显示波形种类
         

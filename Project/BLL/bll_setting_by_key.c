@@ -26,7 +26,7 @@ void KEY_Task(void)
     
     if(KEY_Down)
     {
-        BLL_LCD_Updata_Show_Setting(); // 更新LCD界面
+        UI_Updata_Setting(); // 更新LCD界面
         
         BLL_Beep_On_Tick(1);  // 蜂鸣器鸣叫 
         
@@ -37,14 +37,14 @@ void KEY_Task(void)
             break;
             
         case 2: // 改变设置选项
-            Setting_Point_In_KEY = BLL_Get_Setting_Index();
+            Setting_Point_In_KEY = BLL_Set_Get_Setting_Index();
             if(++Setting_Point_In_KEY >= 3)  
                 Setting_Point_In_KEY = 0;
             BLL_Set_Setting_Index(Setting_Point_In_KEY);
             break;
             
         case 3:
-            switch(BLL_Get_Setting_Index())
+            switch(BLL_Set_Get_Setting_Index())
             {
             case 0: // 改变输出波形
 
@@ -76,7 +76,7 @@ void KEY_Task(void)
             break;    
             
         case 4:
-            switch(BLL_Get_Setting_Index())
+            switch(BLL_Set_Get_Setting_Index())
             {
             case 0: // 改变输出波形
                 

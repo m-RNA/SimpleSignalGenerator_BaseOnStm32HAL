@@ -104,7 +104,6 @@ int main(void)
   MX_ADC2_Init();
   MX_DAC1_Init();
   /* USER CODE BEGIN 2 */
-  
   // 初始化相关参数 打开控制DAC定时器中断 并 使能DAC模块
   Signal_Generator_Init();
   
@@ -124,7 +123,7 @@ int main(void)
   {
       KEY_Task();  // 按键逻辑检测
       //BEEP_Task(); // 蜂鸣器任务
-      LCD_Update_Task();  // LCD刷新任务
+      UI_Update_Task();  // 界面刷新任务
       
       UART_Send_AD_Data_Task();     // 实时数据发送任务
       UART_Check_Rx_Command_Task(); // 命令接收检查任务
@@ -190,12 +189,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-/***************************************************/
-/****************    DAC部分     *******************/
-
-/***************************************************/
-/****************    串口部分     ******************/
-
 /***************************************************/
 /****************    LED部分      ******************/
 

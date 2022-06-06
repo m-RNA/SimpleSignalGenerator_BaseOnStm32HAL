@@ -9,8 +9,8 @@
 
 extern u8 Tx_Buffer[TX_MAX_LENTH];
 
-void BLL_Allow_Uart_Send_Data(void);
-void UART_Send_AD_Data_Task(void);     // 实时数据发送任务
+void BLL_Uart_Send_Data_Allow(void); // 可以发送数据
+void UART_Send_AD_Data_Task(void);   // 实时数据发送任务
 
 #endif
 

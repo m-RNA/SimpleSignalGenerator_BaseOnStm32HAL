@@ -5,8 +5,7 @@
 #include "ui.h"
 
 void UI_Init(void);
-void BLL_LCD_Updata_Show_Setting(void);
-void LCD_Update_Task(void);   // LCD刷新任务
+void UI_Updata_Setting(void);
+void UI_Update_Task(void); // LCD刷新任务
 
 #endif
-

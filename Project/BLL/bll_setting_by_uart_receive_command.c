@@ -1,3 +1,6 @@
+/***************************************************/
+/****************    串口部分     ******************/
+
 #include "bll_setting.h"
 #include "bll_setting_by_uart_receive_command.h"
 #include "bll_uart_send_data.h"
@@ -78,7 +81,7 @@ void UART_Check_Rx_Command_Task(void)
         sprintf((char*)Tx_Buffer, "Signal Generator>> Successfully set.\n");
         BSP_UART_Send(Tx_Buffer);
         
-        BLL_LCD_Updata_Show_Setting(); // 更新LCD界面
+        UI_Updata_Setting(); // 更新LCD界面
         
         BLL_Beep_On_Tick(1); // 开启蜂鸣器
 

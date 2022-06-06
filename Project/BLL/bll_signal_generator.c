@@ -4,17 +4,11 @@
 #include "tim.h"
 #include "math.h"
 
-u16 SinTable[NPT];     //   模拟正弦波输出缓存区
+static u16 SinTable[NPT]; // 模拟正弦波输出缓存区
 
-u8 WaveOut_Flag = 0;   // DAC输出波形开启关闭
-u8 WaveMode = 1;       // DAC输出波形设置
+static u16 DAC_Val = 0;   // DAC数值
 
-u16 DAC_Val = 0;    // DAC数值
-u16 DAC_Timer_ARR;          // 定时器ARR
-u16 DAC_Wave_Freq_x10 = 20; // 实际 频率 的10倍
-u16 DAC_Vpp_x10 = 25;       // 实际峰峰值的10倍
-
-float k = 1.0f;   // 控制峰峰值中间参数 比例系数
+static float k = 1.0f; // 控制峰峰值中间参数 比例系数
 
 //初始化sin表
 void SinTable_Init(void)
@@ -25,6 +19,9 @@ void SinTable_Init(void)
 		SinTable[i] = (u16)(2047 + 2047 * sin((PI2 * i) / NPT));
 	}
 }
+
+/***************************************************/
+/****************    DAC部分     *******************/
 
 // 正弦波
 void SinWaveOut(void)
@@ -127,7 +124,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         }
     }
     
-    BLL_Allow_Uart_Send_Data();// 串口可以发送数据
+    BLL_Uart_Send_Data_Allow();// 串口可以发送数据
 }
 
 void Signal_Generator_Init(void)
@@ -146,7 +143,13 @@ void Signal_Generator_Init(void)
 }
 
 // 返回当前DAC值
-u16 BLL_Get_Signal_Generator_DAC_Val(void)
+u16 BLL_Signal_Generator_Get_DAC_Val(void)
 {
     return DAC_Val;
+}
+
+// 设置比例系数
+void BLL_Signal_Generator_Set_k(u16 temp_k)
+{
+    k = temp_k;
 }
