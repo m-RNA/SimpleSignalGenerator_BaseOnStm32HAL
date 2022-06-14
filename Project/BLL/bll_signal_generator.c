@@ -16,7 +16,8 @@ void SinTable_Init(void)
 	u16 i;
 	for (i = 0; i < NPT; i++)
 	{
-		SinTable[i] = (u16)(2047 + 2047 * sin((PI2 * i) / NPT));
+        //SinTable[i] = (u16)(2047 + 2047 * sin((PI2 * i) / NPT));
+		SinTable[i] = (u16)(2080 + 1990 * sin((PI2 * i) / NPT));
 	}
 }
 
