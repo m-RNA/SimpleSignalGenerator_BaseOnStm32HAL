@@ -47,7 +47,7 @@ void KEY_Task(void)
                 // HAL_DAC_Start_DMA(&hdac1,DAC_CHANNEL_1,(uint32_t*)DAC_Val, NPT, DAC_ALIGN_12B_R);//开启输出
             }
             else
-                HAL_DAC_Stop_DMA(&hdac1,DAC_CHANNEL_1); // 关闭输出
+                HAL_DAC_Stop_DMA(&hdac3,DAC_CHANNEL_1); // 关闭输出
             break;
             
         case 2: // 改变设置选项

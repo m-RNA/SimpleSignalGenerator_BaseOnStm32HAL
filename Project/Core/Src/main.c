@@ -22,6 +22,7 @@
 #include "adc.h"
 #include "dac.h"
 #include "dma.h"
+#include "opamp.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -104,7 +105,8 @@ int main(void)
   MX_ADC2_Init();
   MX_DMA_Init();
   MX_TIM2_Init();
-  MX_DAC1_Init();
+  MX_DAC3_Init();
+  MX_OPAMP1_Init();
   /* USER CODE BEGIN 2 */
   // 初始化相关参数 打开控制DAC定时器中断 并 使能DAC模块
   Signal_Generator_Init();
