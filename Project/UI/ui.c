@@ -14,8 +14,9 @@
 #define SHOW_LCD_WAVE_MODE       LCD_DisplayChineseString(24 * 4 + 16 + 3, 319 -24 * 6 , 14 + (WaveMode - 1) * 3, 24, 3) 
 
 // 显示波形实际频率
-#define SHOW_LCD_WAVE_REAL_FREQ  snprintf((char*)LCD_String_Buffer, 20, "  Frq:%3.1fHz",DAC_Wave_Freq_x10 /10.0f);  \
-                                 LCD_DisplayStringLine(Line6, LCD_String_Buffer) 
+#define SHOW_LCD_WAVE_REAL_FREQ     if(DAC_Wave_Freq < 10000) snprintf((char*)LCD_String_Buffer, 20, "  Frq:%dHz            ",DAC_Wave_Freq); \
+                                    else                      snprintf((char*)LCD_String_Buffer, 20, "  Frq:%dkHz            ",DAC_Wave_Freq / 1000); \
+                                    LCD_DisplayStringLine(Line6, LCD_String_Buffer)
 
 // 显示波形实际峰峰值
 #define SHOW_LCD_WAVE_REAL_VPP   snprintf((char*)LCD_String_Buffer, 20, "  Vpp:%3.1fV",DAC_Vpp_x10 / 10.0f);\
@@ -66,9 +67,9 @@ void UI_Update_Task(void)
     LCD_DisplayStringLine(Line9, LCD_String_Buffer);
     LCD_SetTextColor(White); // 字体颜色为白色
     
-    // 检查是否需要更新LCD上显示的设置参数
-    if(LCD_Updata_Setting_Flag == 0) return;
-    LCD_Updata_Setting_Flag = 0;
+//    // 检查是否需要更新LCD上显示的设置参数
+//    if(LCD_Updata_Setting_Flag == 0) return;
+//    LCD_Updata_Setting_Flag = 0;
     
     if(WaveOut_Flag)
     {    

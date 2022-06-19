@@ -4,18 +4,17 @@
 #include "main.h"
 #include "bll_setting.h"
 
-extern u8 WaveOut_Flag;   // DACÊä³ö²¨ĞÎ¿ªÆô¹Ø±Õ
-extern u8 WaveMode;       // DACÊä³ö²¨ĞÎÉèÖÃ
+extern u8 WaveOut_Flag;   // DACè¾“å‡ºæ³¢å½¢å¼€å¯å…³é—­
+extern u8 WaveMode;       // DACè¾“å‡ºæ³¢å½¢è®¾ç½®
 
-extern u16 DAC_Wave_Freq_x10; // Êµ¼Ê ÆµÂÊ µÄ10±¶
-extern u16 DAC_Vpp_x10;       // Êµ¼Ê·å·åÖµµÄ10±¶
+extern u32 DAC_Wave_Freq; // å®é™…é¢‘ç‡
+extern u16 DAC_Vpp_x10;   // å®é™…å³°å³°å€¼çš„10å€
 
-u8 BLL_Set_Get_Setting_Index(void);           // ·µ»ØÉèÖÃË÷Òı
-void BLL_Set_Setting_Index(u8 Setting_Index); // ÉèÖÃÉèÖÃË÷Òı
+u8 BLL_Set_Get_Setting_Index(void);           // è¿”å›è®¾ç½®ç´¢å¼•
+void BLL_Set_Setting_Index(u8 Setting_Index); // è®¾ç½®è®¾ç½®ç´¢å¼•
 
-void BLL_Set_Signal_Freq(u16 Freq_x10); // ÉèÖÃÊä³ö²¨ĞÎµÄÆµÂÊ
-void BLL_Set_Signal_Vpp(u16 Vpp_x10);   // ÉèÖÃÊä³ö²¨ĞÎµÄ·å·åÖµ
+void BLL_Set_Signal_Freq(u32 Freq);   // è®¾ç½®è¾“å‡ºæ³¢å½¢çš„é¢‘ç‡
+void BLL_Set_Signal_Vpp(u16 Vpp_x10); // è®¾ç½®è¾“å‡ºæ³¢å½¢çš„å³°å³°å€¼
 
-    
 #endif
 
