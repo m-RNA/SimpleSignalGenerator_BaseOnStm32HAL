@@ -21,6 +21,7 @@
 #include "main.h"
 #include "adc.h"
 #include "dac.h"
+#include "dma.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -99,9 +100,10 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_TIM6_Init();
   MX_USART1_UART_Init();
   MX_ADC2_Init();
+  MX_DMA_Init();
+  MX_TIM2_Init();
   MX_DAC1_Init();
   /* USER CODE BEGIN 2 */
   // 初始化相关参数 打开控制DAC定时器中断 并 使能DAC模块

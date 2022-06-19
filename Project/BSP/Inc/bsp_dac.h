@@ -5,9 +5,11 @@
 #include "bsp_dac.h"
 #include "dac.h"
 
-//ÉèÖÃDACÖµ
-#define BSP_DAC_SetVal(val) \
-    HAL_DAC_SetValue(&hdac1,DAC_CHANNEL_1,DAC_ALIGN_12B_R,val)
+////è®¾ç½®DACå€¼
+//#define BSP_DAC_SetVal(val) \
+//    HAL_DAC_SetValue(&hdac1,DAC_CHANNEL_1,DAC_ALIGN_12B_R,val)
+    
+#define DAC_Tiggle_Timer htim2
 
 #endif
 

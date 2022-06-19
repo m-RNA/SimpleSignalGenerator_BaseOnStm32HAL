@@ -6,13 +6,15 @@
 #include "bll_signal_generator.h"
 
 #define PI2 6.28318530717959 
-#define NPT 1024 // DAC²ÉÑùµãÊı
+#define NPT 256 // DACé‡‡æ ·ç‚¹æ•°
 
 void Signal_Generator_Init(void);
 
-u16 BLL_Signal_Generator_Get_DAC_Val(void); // ·µ»Øµ±Ç°DACÖµ
+//u16 BLL_Signal_Generator_Get_DAC_Val(void); // è¿”å›å½“å‰DACå€¼
 
-void BLL_Signal_Generator_Set_k(float temp_k); // ÉèÖÃ±ÈÀıÏµÊı
+void BLL_Signal_Generator_Set_k(float temp_k); // è®¾ç½®æ¯”ä¾‹ç³»æ•°
+
+void DAC_Table_Update(void); // æ›´æ–°DACè¾“å‡ºè¡¨
 
 #endif
 
