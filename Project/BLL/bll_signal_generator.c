@@ -1,8 +1,7 @@
+#include "bsp.h"
 #include "bll_signal_generator.h"
 #include "bll_uart_send_data.h"
 #include "bll_setting.h"
-#include "tim.h"
-#include "opamp.h"
 #include "math.h"
 #include "string.h"
 
@@ -18,7 +17,6 @@ void SinTable_Init(void)
 	u16 i;
 	for (i = 0; i < NPT; i++)
 	{
-        //SinTable[i] = (u16)(2047 + 2047 * sin((PI2 * i) / NPT));
 		SinTable[i] = (u16)(2080 + 1990 * sin((PI2 * i) / NPT));
 	}
 }
@@ -87,7 +85,7 @@ void StophWaveOut(void)
 // 更新DAC输出表
 void DAC_Table_Update(void)
 {
-    HAL_DAC_Stop_DMA(&hdac3,DAC_CHANNEL_1); // 关闭输出
+    BSP_DAC_STOP(); // 关闭输出
     if(WaveOut_Flag == 0)
     {
        StophWaveOut();
@@ -113,7 +111,7 @@ void DAC_Table_Update(void)
             break;    
         }
     }
-    HAL_DAC_Start_DMA(&hdac3,DAC_CHANNEL_1,(uint32_t*)DAC_Val, NPT, DAC_ALIGN_12B_R);//开启输出
+    BSP_DAC_START(); //开启输出
 }
 
 void Signal_Generator_Init(void)
@@ -129,8 +127,8 @@ void Signal_Generator_Init(void)
     
     // 设置输出波形的频率
     BLL_Set_Signal_Freq(2000); 
-    HAL_OPAMP_Start(&hopamp1);
-    HAL_TIM_Base_Start(&DAC_Tiggle_Timer); // 开启控制DAC的定时器
+    HAL_OPAMP_Start(&hopamp1);    // STM32G4特别模块
+    BSP_DAC_Tiggle_Timer_Start(); // 开启控制DAC的定时器
     DAC_Table_Update(); // 开启DAC输出  
 }
 

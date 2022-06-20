@@ -1184,6 +1184,11 @@
               <FileType>5</FileType>
               <FilePath>..\BSP\Inc\bsp_uart.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_tim.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\BSP\Inc\bsp_tim.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -1,6 +1,6 @@
+#include "bsp.h"
 #include "bll_setting.h"
 #include "bll_signal_generator.h"
-#include "tim.h"
 
 static vu8 Setting_Point = 0;  // 设置项索引
 static u32 DAC_Timer_ARR;      // 定时器ARR
