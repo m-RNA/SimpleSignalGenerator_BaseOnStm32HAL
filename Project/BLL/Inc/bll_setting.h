@@ -2,7 +2,6 @@
 #define __BLL_SETTING_H_
 
 #include "main.h"
-#include "bll_setting.h"
 
 extern u8 WaveOut_Flag;   // DAC输出波形开启关闭
 extern u8 WaveMode;       // DAC输出波形设置

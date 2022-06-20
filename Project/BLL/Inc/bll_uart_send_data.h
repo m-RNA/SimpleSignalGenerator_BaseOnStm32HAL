@@ -2,7 +2,6 @@
 #define __BLL_UART_SEND_DATA_H_
 
 #include "main.h"
-#include "bll_uart_send_data.h"
 #include "bsp_uart.h"
 
 #define TX_MAX_LENTH 100 // UART最大发送长度

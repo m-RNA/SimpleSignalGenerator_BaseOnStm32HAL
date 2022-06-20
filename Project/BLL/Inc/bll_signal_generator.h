@@ -3,7 +3,6 @@
 
 #include "main.h"
 #include "bsp_dac.h"
-#include "bll_signal_generator.h"
 
 #define PI2 6.28318530717959 
 #define NPT 256 // DAC采样点数

@@ -2,7 +2,6 @@
 #define __BLL_BEEP_H_
 
 #include "main.h"
-#include "bll_beep.h"
 
 #define BEEP_TIME 30     // 蜂鸣器默认鸣叫节拍时长ms
 
