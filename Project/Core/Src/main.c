@@ -108,6 +108,7 @@ int main(void)
   MX_DAC3_Init();
   MX_OPAMP1_Init();
   /* USER CODE BEGIN 2 */
+  
   // 初始化相关参数 打开控制DAC定时器中断 并 使能DAC模块
   Signal_Generator_Init();
   

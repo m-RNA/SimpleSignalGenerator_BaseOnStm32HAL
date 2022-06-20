@@ -2,6 +2,7 @@
 #define __BSP_TIM_H_
 
 #include "main.h"
+#include "tim.h"
 
 // 开启触发DAC的定时器
 #define BSP_DAC_Tiggle_Timer_Start() \

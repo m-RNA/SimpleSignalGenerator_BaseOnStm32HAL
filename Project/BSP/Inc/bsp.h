@@ -2,8 +2,6 @@
 #define __BSP_H_
 
 #include "main.h"
-#include "tim.h"
-#include "dac.h"
 #include "opamp.h"
 
 #include "bsp_lcd.h"
