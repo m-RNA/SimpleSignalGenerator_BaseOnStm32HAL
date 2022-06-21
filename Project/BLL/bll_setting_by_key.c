@@ -170,7 +170,6 @@ void KEY_Task(void)
                 
             case 1: // 改变波形频率
                 
-                
                 if(DAC_Wave_Freq > 1000)
                     DAC_Wave_Freq -= 1000;
                 else if(DAC_Wave_Freq > 100)

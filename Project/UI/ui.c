@@ -37,7 +37,6 @@ void UI_Init(void)
   LCD_SetTextColor(White);
   LED_Disp(0);
    
-    
   // 显示初始LCD界面 
   LCD_DrawLine(8 + 36 + 8 + 16 + 8, 0, 320, Horizontal); // 画线
   LCD_DrawLine(Line8 + 8, 0, 320, Horizontal);           // 画线

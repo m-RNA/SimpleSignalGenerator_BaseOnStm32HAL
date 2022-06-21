@@ -2,7 +2,6 @@
 #define __BSP_H_
 
 #include "main.h"
-#include "opamp.h"
 
 #include "bsp_lcd.h"
 #include "bsp_led.h"

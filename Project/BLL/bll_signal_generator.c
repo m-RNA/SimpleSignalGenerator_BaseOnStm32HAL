@@ -4,6 +4,7 @@
 #include "bll_setting.h"
 #include "math.h"
 #include "string.h"
+#include "opamp.h"
 
 static u16 SinTable[NPT]; // 模拟正弦波输出缓存区
 
