@@ -5,7 +5,7 @@
 #include "usart.h"
 
 void Receive_Uart_Command_Init(void);
-void UART_Check_Rx_Command_Task(void); // ÃüÁî½ÓÊÕ¼ì²éÈÎÎñ
+void UART_Check_Rx_Command_Task(void); // å‘½ä»¤æ¥æ”¶æ£€æŸ¥ä»»åŠ¡
 
 #endif
 

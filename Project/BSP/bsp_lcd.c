@@ -1,8 +1,8 @@
 /*
-  ³ÌÐòËµÃ÷: CT117EÇ¶ÈëÊ½¾ºÈü°åLCDÇý¶¯³ÌÐò
-  Èí¼þ»·¾³: Keil uVision 4.10 
-  Ó²¼þ»·¾³: CT117EÇ¶ÈëÊ½¾ºÈü°å
-  ÈÕ    ÆÚ: 2011-8-9
+  ç¨‹åºè¯´æ˜Ž: CT117EåµŒå…¥å¼ç«žèµ›æ¿LCDé©±åŠ¨ç¨‹åº
+  è½¯ä»¶çŽ¯å¢ƒ: Keil uVision 4.10 
+  ç¡¬ä»¶çŽ¯å¢ƒ: CT117EåµŒå…¥å¼ç«žèµ›æ¿
+  æ—¥    æœŸ: 2011-8-9
 */
 #include "bsp_lcd.h"
 #include "fonts.h"
@@ -25,7 +25,7 @@ void Delay_LCD(u16 n)
 }
 
 /*
-	uC8230ÐÍÒº¾§¿ØÖÆÆ÷¼Ä´æÆ÷ÅäÖÃ
+	uC8230åž‹æ¶²æ™¶æŽ§åˆ¶å™¨å¯„å­˜å™¨é…ç½®
 */
 void REG_8230_Init(void)
 {
@@ -312,24 +312,24 @@ void LCD_DisplayStringLine(u8 Line, u8 *ptr)
 }
 
 
-//ÏÔÊ¾Ò»¸öÖ¸¶¨´óÐ¡µÄºº×Ö
-//x,y :ºº×ÖµÄ×ø±ê
-//index:ºº×ÖÔÚÊý×éÖÐµÄÎ»ÖÃ
-//size:×ÖÌå´óÐ¡
-//mode:0,Õý³£ÏÔÊ¾,1,µþ¼ÓÏÔÊ¾
+//æ˜¾ç¤ºä¸€ä¸ªæŒ‡å®šå¤§å°çš„æ±‰å­—
+//x,y :æ±‰å­—çš„åæ ‡
+//index:æ±‰å­—åœ¨æ•°ç»„ä¸­çš„ä½ç½®
+//size:å­—ä½“å¤§å°
+//mode:0,æ­£å¸¸æ˜¾ç¤º,1,å åŠ æ˜¾ç¤º
 void LCD_DrawChinese(u16 x,u16 y,u16 index,u8 size,u8 mode)
 {
     u8 temp,t,t1;
 	u16 y0=y;
-	u8 csize=(size/8+((size%8)?1:0))*(size);	//Ò»¸öºº×ÖÊý¾Ý×Ö½ÚÊý£¬Ö±½Ó´æ¾Í¿É±ÈÈçsize=24Ò»¸öºº×ÖÊÇ£û72Êý¾Ý£ý£¬16ÊÇ32
+	u8 csize=(size/8+((size%8)?1:0))*(size);	//ä¸€ä¸ªæ±‰å­—æ•°æ®å­—èŠ‚æ•°ï¼Œç›´æŽ¥å­˜å°±å¯æ¯”å¦‚size=24ä¸€ä¸ªæ±‰å­—æ˜¯ï½›72æ•°æ®ï½ï¼Œ16æ˜¯32
 		for(t=0;t<csize;t++)
 	{   		
         if(size == 16)
-           temp=Chinese_Table_16[index][t];			//µÃµ½µãÕóÊý¾Ý      
+           temp=Chinese_Table_16[index][t];			//å¾—åˆ°ç‚¹é˜µæ•°æ®      
         else if(size == 24)
-           temp=Chinese_Table_24[index][t];			//µÃµ½µãÕóÊý¾Ý      
+           temp=Chinese_Table_24[index][t];			//å¾—åˆ°ç‚¹é˜µæ•°æ®      
         else if(size == 32)
-           temp=Chinese_Table_32[index][t];			//µÃµ½µãÕóÊý¾Ý    
+           temp=Chinese_Table_32[index][t];			//å¾—åˆ°ç‚¹é˜µæ•°æ®    
         
 		for(t1=0;t1<8;t1++)
 		{

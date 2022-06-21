@@ -1,5 +1,5 @@
 /***************************************************/
-/****************    ´®¿Ú²¿·Ö     ******************/
+/****************    ä¸²å£éƒ¨åˆ†     ******************/
 
 #include "bll_setting.h"
 #include "bll_setting_by_uart_receive_command.h"
@@ -12,20 +12,20 @@
 #include "tim.h"
 #include "bll.h"
 
-#define RX_MAX_LENTH 100 // UART×î´ó½ÓÊÕ³¤¶È
-static vu32 SW_Timer_Tick = {0}; // Èí¼ş¶¨Ê±Æ÷Êı×é
+#define RX_MAX_LENTH 100 // UARTæœ€å¤§æ¥æ”¶é•¿åº¦
+static vu32 SW_Timer_Tick = {0}; // è½¯ä»¶å®šæ—¶å™¨æ•°ç»„
 
-u8 Rx_Index = 0; // UART½ÓÊÕ¼ÆÊıË÷Òı
-u8 Rx_Temp = 0;  // UARTÖĞ¶Ï½ÓÊÕ»º´æ
-u8 Rx_Buffer[RX_MAX_LENTH] = {0};  //UART½ÓÊÕ»º´æ
+u8 Rx_Index = 0; // UARTæ¥æ”¶è®¡æ•°ç´¢å¼•
+u8 Rx_Temp = 0;  // UARTä¸­æ–­æ¥æ”¶ç¼“å­˜
+u8 Rx_Buffer[RX_MAX_LENTH] = {0};  //UARTæ¥æ”¶ç¼“å­˜
 
-// ¿ªÆô´®¿Ú½ÓÊÕÖĞ¶Ï
+// å¼€å¯ä¸²å£æ¥æ”¶ä¸­æ–­
 void Receive_Uart_Command_Init(void)
 {
   HAL_UART_Receive_IT(&huart1, &Rx_Temp, 1);  
 }
 
-// ´®¿Ú½ÓÊÕÖĞ¶ÏÊı¾İ´¦Àí
+// ä¸²å£æ¥æ”¶ä¸­æ–­æ•°æ®å¤„ç†
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
     if(Rx_Index < RX_MAX_LENTH)
@@ -48,15 +48,15 @@ void UART_Check_Rx_Command_Task(void)
     u16 temp_mode, temp_vpp;
     
     if(!Rx_Index) return;
-    if(SW_Timer_Tick > BSP_GetTick()) return; // ¡ù return ÓÃ > 
+    if(SW_Timer_Tick > BSP_GetTick()) return; // â€» return ç”¨ > 
     
     if(Rx_Index <= 14) // {0:20,3.0}
     {
-        // ¼ì²éÃüÁî¸ñÊ½ÊÇ·ñÕıÈ·
+        // æ£€æŸ¥å‘½ä»¤æ ¼å¼æ˜¯å¦æ­£ç¡®
         if((Rx_Buffer[0] != '{') && (Rx_Buffer[2] != ':') && (Rx_Buffer[Rx_Index - 5] != ',') && (Rx_Buffer[Rx_Index - 3] != '.')&& (Rx_Buffer[Rx_Index - 1] != '}'))
             goto Send_Error;
 
-        // ¼ì²éÃüÁîÊı¾İ·¶Î§ÊÇ·ñºÏÀí
+        // æ£€æŸ¥å‘½ä»¤æ•°æ®èŒƒå›´æ˜¯å¦åˆç†
         temp_mode =  Rx_Buffer[1] - '0';
         temp_vpp  = (Rx_Buffer[Rx_Index - 4] - '0') * 10+ Rx_Buffer[Rx_Index - 2] - '0';
         for(i = 3; i < Rx_Index - 5; i++)
@@ -68,47 +68,47 @@ void UART_Check_Rx_Command_Task(void)
         if(temp_freq > 100000) goto Send_Error;
         if((temp_vpp  > 33) || (temp_vpp  < 15)) goto Send_Error;
         
-        // ÃüÁîÕıÈ·
+        // å‘½ä»¤æ­£ç¡®
         if(temp_mode == 0)
         {
-            WaveOut_Flag = 0;  // ¹Ø±Õ²¨ĞÎÊä³ö
+            WaveOut_Flag = 0;  // å…³é—­æ³¢å½¢è¾“å‡º
         }
         else
         {
-            WaveOut_Flag = 1;     // ´ò¿ª²¨ĞÎÊä³ö
-            WaveMode = temp_mode; // ÉèÖÃÊä³ö²¨ĞÎ
+            WaveOut_Flag = 1;     // æ‰“å¼€æ³¢å½¢è¾“å‡º
+            WaveMode = temp_mode; // è®¾ç½®è¾“å‡ºæ³¢å½¢
         }
         
-        // ¸Ä±ä²¨ĞÎÆµÂÊ
+        // æ”¹å˜æ³¢å½¢é¢‘ç‡
         BLL_Set_Signal_Freq(temp_freq);
         
-        // ¸Ä±ä²¨ĞÎ·å·åÖµ
+        // æ”¹å˜æ³¢å½¢å³°å³°å€¼
         BLL_Set_Signal_Vpp(temp_vpp);
         
         sprintf((char*)Tx_Buffer, "Signal Generator>> Set OK.\n");
         BSP_UART_Send(Tx_Buffer);
         
-        UI_Updata_Setting(); // ¸üĞÂLCD½çÃæ
+        UI_Updata_Setting(); // æ›´æ–°LCDç•Œé¢
         
-        BLL_Beep_On_Tick(1); // ¿ªÆô·äÃùÆ÷
+        BLL_Beep_On_Tick(1); // å¼€å¯èœ‚é¸£å™¨
 
-        //UART_LED_Flag = 1;  // µãÁÁLED1 250ms
-        //SW_Timer_Tick[4] = 250 +  BSP_GetTick();  // ¸´Î»Èí¼ş¶¨Ê±Æ÷250ms¼ÆÊ±
+        //UART_LED_Flag = 1;  // ç‚¹äº®LED1 250ms
+        //SW_Timer_Tick[4] = 250 +  BSP_GetTick();  // å¤ä½è½¯ä»¶å®šæ—¶å™¨250msè®¡æ—¶
     }
     else
     {
-        Send_Error: // ÃüÁî´íÎó
+        Send_Error: // å‘½ä»¤é”™è¯¯
         
         sprintf((char*)Tx_Buffer, "Signal Generator>> Command error.\n");
         BSP_UART_Send(Tx_Buffer);
         
-        BLL_Beep_On_Tick(4); // ¿ªÆô·äÃùÆ÷
+        BLL_Beep_On_Tick(4); // å¼€å¯èœ‚é¸£å™¨
 
-        //UART_LED_Flag = 2;  //µãÁÁLED8 250ms
-        //SW_Timer_Tick[4] = 250 +  BSP_GetTick(); // ¸´Î»Èí¼ş¶¨Ê±Æ÷250ms¼ÆÊ±
+        //UART_LED_Flag = 2;  //ç‚¹äº®LED8 250ms
+        //SW_Timer_Tick[4] = 250 +  BSP_GetTick(); // å¤ä½è½¯ä»¶å®šæ—¶å™¨250msè®¡æ—¶
     }
 
-    // ÇåÁã½ÓÊÕ»º³å
+    // æ¸…é›¶æ¥æ”¶ç¼“å†²
     memset(Rx_Buffer, 0, Rx_Index);
     Rx_Index = 0;
 }

@@ -1,4 +1,4 @@
-#ifndef __UI_H_
+ï»¿#ifndef __UI_H_
 #define __UI_H_
 
 #include "main.h"
@@ -6,6 +6,6 @@
 
 void UI_Init(void);
 void UI_Updata_Setting(void);
-void UI_Update_Task(void); // LCDË¢ÐÂÈÎÎñ
+void UI_Update_Task(void); // LCDÃ‹Â¢ÄžÃ‚ÃˆÃŽÃŽÃ±
 
 #endif

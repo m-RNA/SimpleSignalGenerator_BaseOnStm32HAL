@@ -56,7 +56,7 @@
 
 /* USER CODE BEGIN PV */
 
-//u8 UART_LED_Flag = 0;   // UARTÃüÁî½ÓÊÕÖ¸Ê¾µÆ×´Ì¬
+//u8 UART_LED_Flag = 0;   // UARTå‘½ä»¤æ¥æ”¶æŒ‡ç¤ºç¯çŠ¶æ€
 
 /* USER CODE END PV */
 
@@ -109,13 +109,13 @@ int main(void)
   MX_OPAMP1_Init();
   /* USER CODE BEGIN 2 */
   
-  // ³õÊ¼»¯Ïà¹Ø²ÎÊı ´ò¿ª¿ØÖÆDAC¶¨Ê±Æ÷ÖĞ¶Ï ²¢ Ê¹ÄÜDACÄ£¿é
+  // åˆå§‹åŒ–ç›¸å…³å‚æ•° æ‰“å¼€æ§åˆ¶DACå®šæ—¶å™¨ä¸­æ–­ å¹¶ ä½¿èƒ½DACæ¨¡å—
   Signal_Generator_Init();
   
-  // ¿ªÆô´®¿Ú½ÓÊÕÖĞ¶Ï
+  // å¼€å¯ä¸²å£æ¥æ”¶ä¸­æ–­
   Receive_Uart_Command_Init();
 
-  // ³õÊ¼LCD²¢ÏÔÊ¾½çÃæ
+  // åˆå§‹LCDå¹¶æ˜¾ç¤ºç•Œé¢
   UI_Init();
   
   /* USER CODE END 2 */
@@ -126,12 +126,12 @@ int main(void)
 
   while (1)
   {
-      KEY_Task();  // °´¼üÂß¼­¼ì²â
-      //BEEP_Task(); // ·äÃùÆ÷ÈÎÎñ
-      UI_Update_Task();  // ½çÃæË¢ĞÂÈÎÎñ
+      KEY_Task();  // æŒ‰é”®é€»è¾‘æ£€æµ‹
+      //BEEP_Task(); // èœ‚é¸£å™¨ä»»åŠ¡
+      UI_Update_Task();  // ç•Œé¢åˆ·æ–°ä»»åŠ¡
       
-      UART_Send_AD_Data_Task();     // ÊµÊ±Êı¾İ·¢ËÍÈÎÎñ
-      UART_Check_Rx_Command_Task(); // ÃüÁî½ÓÊÕ¼ì²éÈÎÎñ
+      UART_Send_AD_Data_Task();     // å®æ—¶æ•°æ®å‘é€ä»»åŠ¡
+      UART_Check_Rx_Command_Task(); // å‘½ä»¤æ¥æ”¶æ£€æŸ¥ä»»åŠ¡
       
     /* USER CODE END WHILE */
 
@@ -195,7 +195,7 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 /***************************************************/
-/****************    LED²¿·Ö      ******************/
+/****************    LEDéƒ¨åˆ†      ******************/
 
 //void LED_UART_Rx_Command_State_Task(void)
 //{

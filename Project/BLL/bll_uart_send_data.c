@@ -1,5 +1,5 @@
 /***************************************************/
-/****************    ´®¿Ú²¿·Ö     ******************/
+/****************    ä¸²å£éƒ¨åˆ†     ******************/
 #include "bll_uart_send_data.h"
 #include "bll_signal_generator.h"
 #include "bll_setting.h"
@@ -7,16 +7,16 @@
 #include "stdio.h"
 #include "string.h"
 
-u8 Tx_Buffer[TX_MAX_LENTH] = {0};  //UART·¢ËÍ»º´æ
-static vu8 UART_Send_Flag = 0;    // ´®¿Ú¿É·¢ËÍ±êÖ¾Î»
+u8 Tx_Buffer[TX_MAX_LENTH] = {0};  //UARTå‘é€ç¼“å­˜
+static vu8 UART_Send_Flag = 0;    // ä¸²å£å¯å‘é€æ ‡å¿—ä½
 
-// ¿ÉÒÔ·¢ËÍÊı¾İ
+// å¯ä»¥å‘é€æ•°æ®
 void BLL_Uart_Send_Data_Allow(void)
 {
     UART_Send_Flag = 1; 
 }
 
-// ½«ÊµÊ±Êä³öµçÑ¹Êı¾İ·¢ËÍµ½ÉÏÎ»»ú
+// å°†å®æ—¶è¾“å‡ºç”µå‹æ•°æ®å‘é€åˆ°ä¸Šä½æœº
 void UART_Send_AD_Data_Task(void)
 {
     if(!UART_Send_Flag) return;

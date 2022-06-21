@@ -1,51 +1,49 @@
 /***************************************************/
-/****************    LCD²¿·Ö      ******************/
+/****************    LCDéƒ¨åˆ†      ******************/
 #include "ui.h"
 #include "bsp.h"
 #include "bll.h"
 #include "stdio.h"
-#include "bll_setting.h"
-#include "bll_signal_generator.h"
 
-// ÏÔÊ¾²¨ĞÎ¿ªÆô»¹ÊÇ¹Ø±Õ
+// æ˜¾ç¤ºæ³¢å½¢å¼€å¯è¿˜æ˜¯å…³é—­
 #define SHOW_LCD_WAVE_ON_OR_OFF  LCD_DisplayChineseString(24 * 3 + 16, 319 -24 * 6, 5 + WaveOut_Flag * 2, 24, 2) 
 
-// ÏÔÊ¾²¨ĞÎÖÖÀà£ºÕıÏÒ²¨/·½²¨/Èı½Ç²¨/¾â³İ²¨
+// æ˜¾ç¤ºæ³¢å½¢ç§ç±»ï¼šæ­£å¼¦æ³¢/æ–¹æ³¢/ä¸‰è§’æ³¢/é”¯é½¿æ³¢
 #define SHOW_LCD_WAVE_MODE       LCD_DisplayChineseString(24 * 4 + 16 + 3, 319 -24 * 6 , 14 + (WaveMode - 1) * 3, 24, 3) 
 
-// ÏÔÊ¾²¨ĞÎÊµ¼ÊÆµÂÊ
+// æ˜¾ç¤ºæ³¢å½¢å®é™…é¢‘ç‡
 #define SHOW_LCD_WAVE_REAL_FREQ     if(DAC_Wave_Freq < 10000) snprintf((char*)LCD_String_Buffer, 20, "  Frq:%dHz            ",DAC_Wave_Freq); \
                                     else                      snprintf((char*)LCD_String_Buffer, 20, "  Frq:%dkHz            ",DAC_Wave_Freq / 1000); \
                                     LCD_DisplayStringLine(Line6, LCD_String_Buffer)
 
-// ÏÔÊ¾²¨ĞÎÊµ¼Ê·å·åÖµ
+// æ˜¾ç¤ºæ³¢å½¢å®é™…å³°å³°å€¼
 #define SHOW_LCD_WAVE_REAL_VPP   snprintf((char*)LCD_String_Buffer, 20, "  Vpp:%3.1fV",DAC_Vpp_x10 / 10.0f);\
                                  LCD_DisplayStringLine(Line7, LCD_String_Buffer) 
                                  
 vu32 SW_Timer_Tick = 0;
-u8 LCD_String_Buffer[21] = {0}; // LCDÏÔÊ¾×Ö·û»º´æ
-u8 LCD_Updata_Setting_Flag = 1;  // Ë¢ĞÂLCDÉèÖÃ±êÖ¾Î»
+u8 LCD_String_Buffer[21] = {0}; // LCDæ˜¾ç¤ºå­—ç¬¦ç¼“å­˜
+u8 LCD_Updata_Setting_Flag = 1;  // åˆ·æ–°LCDè®¾ç½®æ ‡å¿—ä½
 
-u16 ADC_Val = 0;       // ADCÊıÖµ
+u16 ADC_Val = 0;       // ADCæ•°å€¼
 
 void UI_Init(void)
 {
-  // ³õÊ¼»¯LCDºÍLED
+  // åˆå§‹åŒ–LCDå’ŒLED
   LCD_Init();
   LCD_Clear(Black);
   LCD_SetBackColor(Black);
   LCD_SetTextColor(White);
   LED_Disp(0);
    
-  // ÏÔÊ¾³õÊ¼LCD½çÃæ 
-  LCD_DrawLine(8 + 36 + 8 + 16 + 8, 0, 320, Horizontal); // »­Ïß
-  LCD_DrawLine(Line8 + 8, 0, 320, Horizontal);           // »­Ïß
+  // æ˜¾ç¤ºåˆå§‹LCDç•Œé¢ 
+  LCD_DrawLine(8 + 36 + 8 + 16 + 8, 0, 320, Horizontal); // ç”»çº¿
+  LCD_DrawLine(Line8 + 8, 0, 320, Horizontal);           // ç”»çº¿
 
-  LCD_DisplayChineseString(8, 319 - 36 * 2 - 4, 0, 32, 5);        // ÏÔÊ¾±êÌâ ĞÅºÅ·¢ÉúÆ÷
-  LCD_DisplayChineseString(8 + 36 + 4, 319 - 16 * 4, 0, 16, 11);  // ÏÔÊ¾ĞÕÃû Î´¶¨
+  LCD_DisplayChineseString(8, 319 - 36 * 2 - 4, 0, 32, 5);        // æ˜¾ç¤ºæ ‡é¢˜ ä¿¡å·å‘ç”Ÿå™¨
+  LCD_DisplayChineseString(8 + 36 + 4, 319 - 16 * 4, 0, 16, 11);  // æ˜¾ç¤ºå§“å æœªå®š
   
-  LCD_DisplayChineseString(24 * 3 + 16, 319 -24 -8, 0, 24, 5);     // ÏÔÊ¾ ²¨ĞÎÊä³ö
-  LCD_DisplayChineseString(24 * 4 + 16 + 3, 319 -24 -8, 9, 24, 5); // ÏÔÊ¾ ²¨ĞÎÑ¡Ôñ
+  LCD_DisplayChineseString(24 * 3 + 16, 319 -24 -8, 0, 24, 5);     // æ˜¾ç¤º æ³¢å½¢è¾“å‡º
+  LCD_DisplayChineseString(24 * 4 + 16 + 3, 319 -24 -8, 9, 24, 5); // æ˜¾ç¤º æ³¢å½¢é€‰æ‹©
 }
 
 void UI_Updata_Setting(void)
@@ -55,73 +53,73 @@ void UI_Updata_Setting(void)
 
 void UI_Update_Task(void)
 {
-    Task_Delay(90); // Ã¿90ms Ë¢ĞÂÒ»´Î
+    Task_Delay(90); // æ¯90ms åˆ·æ–°ä¸€æ¬¡
     
-    // ²É¼¯²¨ĞÎ ¼ì²éÊÇ·ñÉú³É
+    // é‡‡é›†æ³¢å½¢ æ£€æŸ¥æ˜¯å¦ç”Ÿæˆ
     #ifndef UART_SEND_ADC_DATA
     ADC_Val = ADC2_GetAverageVal();
     #endif
-    LCD_SetTextColor(Green); // ×ÖÌåÑÕÉ«ÎªÂÌÉ«
+    LCD_SetTextColor(Green); // å­—ä½“é¢œè‰²ä¸ºç»¿è‰²
     snprintf((char*)LCD_String_Buffer, 20, "     ADC:%4.2fV", ADC_Val * 3.3f / 4096);
     LCD_DisplayStringLine(Line9, LCD_String_Buffer);
-    LCD_SetTextColor(White); // ×ÖÌåÑÕÉ«Îª°×É«
+    LCD_SetTextColor(White); // å­—ä½“é¢œè‰²ä¸ºç™½è‰²
     
-//    // ¼ì²éÊÇ·ñĞèÒª¸üĞÂLCDÉÏÏÔÊ¾µÄÉèÖÃ²ÎÊı
+//    // æ£€æŸ¥æ˜¯å¦éœ€è¦æ›´æ–°LCDä¸Šæ˜¾ç¤ºçš„è®¾ç½®å‚æ•°
 //    if(LCD_Updata_Setting_Flag == 0) return;
 //    LCD_Updata_Setting_Flag = 0;
     
     if(WaveOut_Flag)
     {    
-        LCD_SetBackColor(Green); // ¿ªÆôÊä³ö²¨ĞÎÊ± ×ÖÌå±³¾°É«ÎªÂÌÉ«
-        LCD_SetTextColor(Black); // ×ÖÌåÑÕÉ«ÎªºÚÉ«
+        LCD_SetBackColor(Green); // å¼€å¯è¾“å‡ºæ³¢å½¢æ—¶ å­—ä½“èƒŒæ™¯è‰²ä¸ºç»¿è‰²
+        LCD_SetTextColor(Black); // å­—ä½“é¢œè‰²ä¸ºé»‘è‰²
     }
     else
     {
-        LCD_SetBackColor(Red);   // ¹Ø±ÕÊä³ö²¨ĞÎÊ± ×ÖÌå±³¾°É«ÎªºìÉ«
-        LCD_SetTextColor(White); // ×ÖÌåÑÕÉ«Îª°×É«
+        LCD_SetBackColor(Red);   // å…³é—­è¾“å‡ºæ³¢å½¢æ—¶ å­—ä½“èƒŒæ™¯è‰²ä¸ºçº¢è‰²
+        LCD_SetTextColor(White); // å­—ä½“é¢œè‰²ä¸ºç™½è‰²
     }
-    SHOW_LCD_WAVE_ON_OR_OFF; // ÏÔÊ¾²¨ĞÎÊä³ö£º¿ªÆô/¹Ø±Õ
+    SHOW_LCD_WAVE_ON_OR_OFF; // æ˜¾ç¤ºæ³¢å½¢è¾“å‡ºï¼šå¼€å¯/å…³é—­
     
     LCD_SetBackColor(Black);
     LCD_SetTextColor(White);
 
-    // ¸ù¾İÉèÖÃË÷Òı¸ßÁÁ¶ÔÓ¦µÄÑ¡Ïî
+    // æ ¹æ®è®¾ç½®ç´¢å¼•é«˜äº®å¯¹åº”çš„é€‰é¡¹
     switch(BLL_Set_Get_Setting_Index())
     {
-    case 0: // ¸ßÁÁÏÔÊ¾²¨ĞÎÖÖÀà
+    case 0: // é«˜äº®æ˜¾ç¤ºæ³¢å½¢ç§ç±»
         
         LCD_SetBackColor(Yellow);
         LCD_SetTextColor(Black);
-        SHOW_LCD_WAVE_MODE;      // ÏÔÊ¾²¨ĞÎÖÖÀà£ºÕıÏÒ²¨/·½²¨/Èı½Ç²¨/¾â³İ²¨
+        SHOW_LCD_WAVE_MODE;      // æ˜¾ç¤ºæ³¢å½¢ç§ç±»ï¼šæ­£å¼¦æ³¢/æ–¹æ³¢/ä¸‰è§’æ³¢/é”¯é½¿æ³¢
         LCD_SetBackColor(Black);
         LCD_SetTextColor(White);  
         
-        SHOW_LCD_WAVE_REAL_FREQ; // ÏÔÊ¾²¨ĞÎÊµ¼ÊÆµÂÊ
-        SHOW_LCD_WAVE_REAL_VPP;  // ÏÔÊ¾²¨ĞÎÊµ¼Ê·å·åÖµ
+        SHOW_LCD_WAVE_REAL_FREQ; // æ˜¾ç¤ºæ³¢å½¢å®é™…é¢‘ç‡
+        SHOW_LCD_WAVE_REAL_VPP;  // æ˜¾ç¤ºæ³¢å½¢å®é™…å³°å³°å€¼
         break;
     
-    case 1: // ¸ßÁÁÏÔÊ¾²¨ĞÎÊµ¼ÊÆµÂÊ
+    case 1: // é«˜äº®æ˜¾ç¤ºæ³¢å½¢å®é™…é¢‘ç‡
         
-        SHOW_LCD_WAVE_MODE; // ÏÔÊ¾²¨ĞÎÖÖÀà£ºÕıÏÒ²¨/·½²¨/Èı½Ç²¨/¾â³İ²¨
+        SHOW_LCD_WAVE_MODE; // æ˜¾ç¤ºæ³¢å½¢ç§ç±»ï¼šæ­£å¼¦æ³¢/æ–¹æ³¢/ä¸‰è§’æ³¢/é”¯é½¿æ³¢
         
         LCD_SetBackColor(Yellow);
         LCD_SetTextColor(Black);        
-        SHOW_LCD_WAVE_REAL_FREQ; // ÏÔÊ¾²¨ĞÎÊµ¼ÊÆµÂÊ  
+        SHOW_LCD_WAVE_REAL_FREQ; // æ˜¾ç¤ºæ³¢å½¢å®é™…é¢‘ç‡  
         LCD_SetBackColor(Black);
         LCD_SetTextColor(White);
         
-        SHOW_LCD_WAVE_REAL_VPP;  // ÏÔÊ¾²¨ĞÎÊµ¼Ê·å·åÖµ
+        SHOW_LCD_WAVE_REAL_VPP;  // æ˜¾ç¤ºæ³¢å½¢å®é™…å³°å³°å€¼
         break;
     
-    case 2: // ¸ßÁÁÏÔÊ¾²¨ĞÎÊµ¼Ê·å·åÖµ
+    case 2: // é«˜äº®æ˜¾ç¤ºæ³¢å½¢å®é™…å³°å³°å€¼
         
-        SHOW_LCD_WAVE_MODE; // ÏÔÊ¾²¨ĞÎÖÖÀà£ºÕıÏÒ²¨/·½²¨/Èı½Ç²¨/¾â³İ²¨
+        SHOW_LCD_WAVE_MODE; // æ˜¾ç¤ºæ³¢å½¢ç§ç±»ï¼šæ­£å¼¦æ³¢/æ–¹æ³¢/ä¸‰è§’æ³¢/é”¯é½¿æ³¢
         
-        SHOW_LCD_WAVE_REAL_FREQ; // ÏÔÊ¾²¨ĞÎÊµ¼ÊÆµÂÊ 
+        SHOW_LCD_WAVE_REAL_FREQ; // æ˜¾ç¤ºæ³¢å½¢å®é™…é¢‘ç‡ 
 
         LCD_SetBackColor(Yellow);
         LCD_SetTextColor(Black);         
-        SHOW_LCD_WAVE_REAL_VPP;  // ÏÔÊ¾²¨ĞÎÊµ¼Ê·å·åÖµ
+        SHOW_LCD_WAVE_REAL_VPP;  // æ˜¾ç¤ºæ³¢å½¢å®é™…å³°å³°å€¼
         LCD_SetBackColor(Black);
         LCD_SetTextColor(White); 
         break;

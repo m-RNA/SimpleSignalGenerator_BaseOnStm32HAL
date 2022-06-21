@@ -4,12 +4,12 @@
 #include "main.h"
 #include "bsp_uart.h"
 
-#define TX_MAX_LENTH 100 // UART×î´ó·¢ËÍ³¤¶È
+#define TX_MAX_LENTH 100 // UARTæœ€å¤§å‘é€é•¿åº¦
 
 extern u8 Tx_Buffer[TX_MAX_LENTH];
 
-void BLL_Uart_Send_Data_Allow(void); // ¿ÉÒÔ·¢ËÍÊı¾İ
-void UART_Send_AD_Data_Task(void);   // ÊµÊ±Êı¾İ·¢ËÍÈÎÎñ
+void BLL_Uart_Send_Data_Allow(void); // å¯ä»¥å‘é€æ•°æ®
+void UART_Send_AD_Data_Task(void);   // å®æ—¶æ•°æ®å‘é€ä»»åŠ¡
 
 #endif
 

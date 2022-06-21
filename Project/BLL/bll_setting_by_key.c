@@ -1,5 +1,5 @@
 /***************************************************/
-/**************    °´¼üÂß¼­²¿·Ö     ****************/
+/**************    æŒ‰é”®é€»è¾‘éƒ¨åˆ†     ****************/
 #include "bsp_key.h"
 #include "bll.h"
 #include "bll_setting.h"
@@ -13,14 +13,14 @@ static vu32 SW_Timer_Tick = 0;
 static vu32 SW_Timer_KEY_Hold_Tick = 0;
 vu8 Setting_Point_In_KEY = 0;  
 
-static u8 KEY_Val, KEY_Down, KEY_Up, KEY_Old = 0; // °´¼üÏà¹Ø±äÁ¿
+static u8 KEY_Val, KEY_Down, KEY_Up, KEY_Old = 0; // æŒ‰é”®ç›¸å…³å˜é‡
 
-// ¼ì²é°´¼ü
+// æ£€æŸ¥æŒ‰é”®
 void KEY_Task(void)
 {
-    Task_Delay(75); // Ã¿75ms ¼ì²âÒ»´Î
+    Task_Delay(75); // æ¯75ms æ£€æµ‹ä¸€æ¬¡
     
-    // ¼ì²â°´¼ü
+    // æ£€æµ‹æŒ‰é”®
     KEY_Val = KEY_Scan();
     KEY_Down = KEY_Val & (KEY_Val ^ KEY_Old);
     KEY_Up = ~KEY_Val & (KEY_Val ^ KEY_Old);
@@ -28,9 +28,9 @@ void KEY_Task(void)
     
     if(KEY_Down)
     {
-        UI_Updata_Setting(); // ¸üĞÂLCD½çÃæ
+        UI_Updata_Setting(); // æ›´æ–°LCDç•Œé¢
         
-        BLL_Beep_On_Tick(1);  // ·äÃùÆ÷Ãù½Ğ 
+        BLL_Beep_On_Tick(1);  // èœ‚é¸£å™¨é¸£å« 
         
         SW_Timer_KEY_Hold_Tick = BSP_GetTick() + KEY_LONG_HOLD_TICK;
     }
@@ -39,18 +39,18 @@ void KEY_Task(void)
     {
         switch(KEY_Up)
         {
-        case 1: // ¿ØÖÆ²¨ĞÎÊÇ·ñÊä³ö
+        case 1: // æ§åˆ¶æ³¢å½¢æ˜¯å¦è¾“å‡º
             WaveOut_Flag = !WaveOut_Flag;
             if(WaveOut_Flag)
             {
                 DAC_Table_Update();
-                // HAL_DAC_Start_DMA(&hdac1,DAC_CHANNEL_1,(uint32_t*)DAC_Val, NPT, DAC_ALIGN_12B_R);//¿ªÆôÊä³ö
+                // HAL_DAC_Start_DMA(&hdac1,DAC_CHANNEL_1,(uint32_t*)DAC_Val, NPT, DAC_ALIGN_12B_R);//å¼€å¯è¾“å‡º
             }
             else
-                BSP_DAC_STOP(); // ¹Ø±ÕÊä³ö
+                BSP_DAC_STOP(); // å…³é—­è¾“å‡º
             break;
             
-        case 2: // ¸Ä±äÉèÖÃÑ¡Ïî
+        case 2: // æ”¹å˜è®¾ç½®é€‰é¡¹
             Setting_Point_In_KEY = BLL_Set_Get_Setting_Index();
             if(++Setting_Point_In_KEY >= 3)  
                 Setting_Point_In_KEY = 0;
@@ -60,7 +60,7 @@ void KEY_Task(void)
         case 3:
             switch(BLL_Set_Get_Setting_Index())
             {
-            case 0: // ¸Ä±äÊä³ö²¨ĞÎ
+            case 0: // æ”¹å˜è¾“å‡ºæ³¢å½¢
 
                 --WaveMode;  
 
@@ -68,7 +68,7 @@ void KEY_Task(void)
                     WaveMode = 4;
                 break;
                 
-            case 1: // ¸Ä±ä²¨ĞÎÆµÂÊ
+            case 1: // æ”¹å˜æ³¢å½¢é¢‘ç‡
                 
                 if(DAC_Wave_Freq < 10)
                     DAC_Wave_Freq++;
@@ -82,7 +82,7 @@ void KEY_Task(void)
                 BLL_Set_Signal_Freq(DAC_Wave_Freq);
                 break;
                 
-            case 2: // ¸Ä±ä²¨ĞÎ·å·åÖµ
+            case 2: // æ”¹å˜æ³¢å½¢å³°å³°å€¼
                 
                 DAC_Vpp_x10+=2;
                 if(DAC_Vpp_x10>=34)
@@ -99,7 +99,7 @@ void KEY_Task(void)
         case 4:
             switch(BLL_Set_Get_Setting_Index())
             {
-            case 0: // ¸Ä±äÊä³ö²¨ĞÎ
+            case 0: // æ”¹å˜è¾“å‡ºæ³¢å½¢
                 
                 ++WaveMode; 
             
@@ -107,7 +107,7 @@ void KEY_Task(void)
                     WaveMode = 1;
                 break;
                 
-            case 1: // ¸Ä±ä²¨ĞÎÆµÂÊ
+            case 1: // æ”¹å˜æ³¢å½¢é¢‘ç‡
                 
                 if(DAC_Wave_Freq > 1000)
                     DAC_Wave_Freq -= 1000;
@@ -121,7 +121,7 @@ void KEY_Task(void)
                 BLL_Set_Signal_Freq(DAC_Wave_Freq);
                 break;
                 
-            case 2: // ¸Ä±ä²¨ĞÎ·å·åÖµ
+            case 2: // æ”¹å˜æ³¢å½¢å³°å³°å€¼
                 
                 DAC_Vpp_x10-=2;
                 if(DAC_Vpp_x10 < 15)
@@ -144,7 +144,7 @@ void KEY_Task(void)
      
             switch(BLL_Set_Get_Setting_Index())
             {
-            case 1: // ¸Ä±ä²¨ĞÎÆµÂÊ
+            case 1: // æ”¹å˜æ³¢å½¢é¢‘ç‡
                 
                 if(DAC_Wave_Freq < 10)
                     DAC_Wave_Freq++;
@@ -168,7 +168,7 @@ void KEY_Task(void)
             switch(BLL_Set_Get_Setting_Index())
             {
                 
-            case 1: // ¸Ä±ä²¨ĞÎÆµÂÊ
+            case 1: // æ”¹å˜æ³¢å½¢é¢‘ç‡
                 
                 if(DAC_Wave_Freq > 1000)
                     DAC_Wave_Freq -= 1000;

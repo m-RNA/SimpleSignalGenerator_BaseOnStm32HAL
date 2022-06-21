@@ -6,13 +6,13 @@
 #include "string.h"
 #include "opamp.h"
 
-static u16 SinTable[NPT]; // Ä£ÄâÕıÏÒ²¨Êä³ö»º´æÇø
+static u16 SinTable[NPT]; // æ¨¡æ‹Ÿæ­£å¼¦æ³¢è¾“å‡ºç¼“å­˜åŒº
 
-static u16 DAC_Val[NPT] = {0};   // DACÊıÖµ
+static u16 DAC_Val[NPT] = {0};   // DACæ•°å€¼
 
-static float k = 1.0f; // ¿ØÖÆ·å·åÖµÖĞ¼ä²ÎÊı ±ÈÀıÏµÊı
+static float k = 1.0f; // æ§åˆ¶å³°å³°å€¼ä¸­é—´å‚æ•° æ¯”ä¾‹ç³»æ•°
 
-//³õÊ¼»¯sin±í
+//åˆå§‹åŒ–sinè¡¨
 void SinTable_Init(void)
 {
 	u16 i;
@@ -23,9 +23,9 @@ void SinTable_Init(void)
 }
 
 /***************************************************/
-/****************    DAC²¿·Ö     *******************/
+/****************    DACéƒ¨åˆ†     *******************/
 
-// ÕıÏÒ²¨
+// æ­£å¼¦æ³¢
 void SinWaveOut(void)
 {
     u16 i;
@@ -35,7 +35,7 @@ void SinWaveOut(void)
     }
 }
 
-// ·½²¨
+// æ–¹æ³¢
 void SquareWaveOut(void)
 {
     u16 i;
@@ -49,7 +49,7 @@ void SquareWaveOut(void)
     }
 }
 
-// Èı½Ç²¨
+// ä¸‰è§’æ³¢
 void TriangularWaveOut(void)
 {
     u16 i, j;
@@ -64,7 +64,7 @@ void TriangularWaveOut(void)
     }
 }
 
-// ¾â³İ²¨
+// é”¯é½¿æ³¢
 void SawtoothWaveOut(void)
 {
     u16 i;
@@ -74,19 +74,19 @@ void SawtoothWaveOut(void)
     }
 }
 
-// Í£Ö¹Êä³ö
+// åœæ­¢è¾“å‡º
 void StophWaveOut(void)
 {
     memset(DAC_Val, 0, sizeof(DAC_Val));
 }
 
-//BSP_DAC_SetVal(DAC_Val); // ÉèÖÃDACÖµ 
-//BLL_Uart_Send_Data_Allow();// ´®¿Ú¿ÉÒÔ·¢ËÍÊı¾İ
+//BSP_DAC_SetVal(DAC_Val); // è®¾ç½®DACå€¼ 
+//BLL_Uart_Send_Data_Allow();// ä¸²å£å¯ä»¥å‘é€æ•°æ®
 
-// ¸üĞÂDACÊä³ö±í
+// æ›´æ–°DACè¾“å‡ºè¡¨
 void DAC_Table_Update(void)
 {
-    BSP_DAC_STOP(); // ¹Ø±ÕÊä³ö
+    BSP_DAC_STOP(); // å…³é—­è¾“å‡º
     if(WaveOut_Flag == 0)
     {
        StophWaveOut();
@@ -112,28 +112,28 @@ void DAC_Table_Update(void)
             break;    
         }
     }
-    BSP_DAC_START(); //¿ªÆôÊä³ö
+    BSP_DAC_START(); //å¼€å¯è¾“å‡º
 }
 
 void Signal_Generator_Init(void)
 {
-    // sin±í³õÊ¼»¯
+    // sinè¡¨åˆå§‹åŒ–
     SinTable_Init();
     
-    WaveOut_Flag = 0; // ¹Ø±ÕÊä³ö
-    WaveMode = 1;     // ÉèÖÃÎªÕıÏÒ²¨
+    WaveOut_Flag = 0; // å…³é—­è¾“å‡º
+    WaveMode = 1;     // è®¾ç½®ä¸ºæ­£å¼¦æ³¢
 
-    // ÉèÖÃÊä³ö²¨ĞÎµÄ·å·åÖµ
+    // è®¾ç½®è¾“å‡ºæ³¢å½¢çš„å³°å³°å€¼
     BLL_Set_Signal_Vpp(25);
     
-    // ÉèÖÃÊä³ö²¨ĞÎµÄÆµÂÊ
+    // è®¾ç½®è¾“å‡ºæ³¢å½¢çš„é¢‘ç‡
     BLL_Set_Signal_Freq(2000); 
-    HAL_OPAMP_Start(&hopamp1);    // STM32G4ÌØ±ğÄ£¿é
-    BSP_DAC_Tiggle_Timer_Start(); // ¿ªÆô¿ØÖÆDACµÄ¶¨Ê±Æ÷
-    DAC_Table_Update(); // ¿ªÆôDACÊä³ö  
+    HAL_OPAMP_Start(&hopamp1);    // STM32G4ç‰¹åˆ«æ¨¡å—
+    BSP_DAC_Tiggle_Timer_Start(); // å¼€å¯æ§åˆ¶DACçš„å®šæ—¶å™¨
+    DAC_Table_Update(); // å¼€å¯DACè¾“å‡º  
 }
 
-// ÉèÖÃ±ÈÀıÏµÊı
+// è®¾ç½®æ¯”ä¾‹ç³»æ•°
 void BLL_Signal_Generator_Set_k(float temp_k)
 {
     k = temp_k;

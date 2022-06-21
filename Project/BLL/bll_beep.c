@@ -1,11 +1,11 @@
 /***************************************************/
-/****************    ·äÃùÆ÷²¿·Ö     ****************/
+/****************    èœ‚é¸£å™¨éƒ¨åˆ†     ****************/
 #include "bsp_beep.h"
 #include "bll_beep.h"
 #include "bll.h"
 
 static vu32 SW_Timer_Tick = 0;
-static u8 BEEP_State = 0; // ·äÃùÆ÷Ãù½Ğ×´Ì¬ 
+static u8 BEEP_State = 0; // èœ‚é¸£å™¨é¸£å«çŠ¶æ€ 
 
 void BLL_Beep_On_Tick(u8 Tick)
 {
@@ -17,11 +17,11 @@ void BEEP_Task(void)
 {
     if(BEEP_State) 
     {
-        BEEP_Ctrl(1); //´ò¿ª·äÃùÆ÷
+        BEEP_Ctrl(1); //æ‰“å¼€èœ‚é¸£å™¨
         
-        if(SW_Timer_Tick < BSP_GetTick())  // ¼ÆÊ±ÊÇ·ñ½áÊø
+        if(SW_Timer_Tick < BSP_GetTick())  // è®¡æ—¶æ˜¯å¦ç»“æŸ
         {
-            BEEP_Ctrl(0); //¹Ø±Õ·äÃùÆ÷
+            BEEP_Ctrl(0); //å…³é—­èœ‚é¸£å™¨
             BEEP_State = 0;
         }    
     }

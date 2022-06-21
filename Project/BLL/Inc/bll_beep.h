@@ -3,11 +3,11 @@
 
 #include "main.h"
 
-#define BEEP_TIME 30     // ·äÃùÆ÷Ä¬ÈÏÃù½Ğ½ÚÅÄÊ±³¤ms
+#define BEEP_TIME 30     // èœ‚é¸£å™¨é»˜è®¤é¸£å«èŠ‚æ‹æ—¶é•¿ms
 
 void BLL_Beep_On_Tick(u8 Tick);
 
-void BEEP_Task(void);  // ·äÃùÆ÷ÈÎÎñ
+void BEEP_Task(void);  // èœ‚é¸£å™¨ä»»åŠ¡
 
 #endif
 

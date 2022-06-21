@@ -2,28 +2,28 @@
 #include "bll_setting.h"
 #include "bll_signal_generator.h"
 
-static vu8 Setting_Point = 0; // ÉèÖÃÏîË÷Òı
-static u32 DAC_Timer_ARR;     // ¶¨Ê±Æ÷ARR
+static vu8 Setting_Point = 0; // è®¾ç½®é¡¹ç´¢å¼•
+static u32 DAC_Timer_ARR;     // å®šæ—¶å™¨ARR
 
-u8 WaveOut_Flag; // DACÊä³ö²¨ĞÎ¿ª¹Ø
-u8 WaveMode;     // DACÊä³ö²¨ĞÎÉèÖÃ
+u8 WaveOut_Flag; // DACè¾“å‡ºæ³¢å½¢å¼€å…³
+u8 WaveMode;     // DACè¾“å‡ºæ³¢å½¢è®¾ç½®
 
-u32 DAC_Wave_Freq; // Êµ¼ÊÆµÂÊ
-u16 DAC_Vpp_x10;   // Êµ¼Ê·å·åÖµµÄ10±¶
+u32 DAC_Wave_Freq; // å®é™…é¢‘ç‡
+u16 DAC_Vpp_x10;   // å®é™…å³°å³°å€¼çš„10å€
 
-// ·µ»ØÉèÖÃË÷Òı
+// è¿”å›è®¾ç½®ç´¢å¼•
 u8 BLL_Set_Get_Setting_Index(void)
 {
     return Setting_Point;
 }
 
-// ÉèÖÃË÷Òı
+// è®¾ç½®ç´¢å¼•
 void BLL_Set_Setting_Index(u8 Setting_Index)
 {
     Setting_Point = Setting_Index;
 }
 
-// ÉèÖÃÊä³ö²¨ĞÎµÄÆµÂÊ
+// è®¾ç½®è¾“å‡ºæ³¢å½¢çš„é¢‘ç‡
 void BLL_Set_Signal_Freq(u32 Freq)
 {
     DAC_Wave_Freq = Freq;
@@ -31,7 +31,7 @@ void BLL_Set_Signal_Freq(u32 Freq)
     __HAL_TIM_SET_AUTORELOAD(&DAC_TIGGLE_TIMER, DAC_Timer_ARR);
 }
 
-// ÉèÖÃÊä³ö²¨ĞÎµÄ·å·åÖµ
+// è®¾ç½®è¾“å‡ºæ³¢å½¢çš„å³°å³°å€¼
 void BLL_Set_Signal_Vpp(u16 Vpp_x10)
 {
     DAC_Vpp_x10 = Vpp_x10;

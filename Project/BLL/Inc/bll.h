@@ -12,7 +12,7 @@
 //#include "bll_led.h"
 //#include "bll_adc.h"
 
-// Èí¼þ¶¨Ê±Æ÷ ºê¶¨Òå
+// è½¯ä»¶å®šæ—¶å™¨ å®å®šä¹‰
 #define Task_Delay(MS)\
     if(SW_Timer_Tick > BSP_GetTick()) return;\
     SW_Timer_Tick = BSP_GetTick() + MS;
