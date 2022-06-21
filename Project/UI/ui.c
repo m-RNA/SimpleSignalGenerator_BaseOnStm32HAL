@@ -19,7 +19,10 @@
 // 显示波形实际峰峰值
 #define SHOW_LCD_WAVE_REAL_VPP   snprintf((char*)LCD_String_Buffer, 20, "  Vpp:%3.1fV",DAC_Vpp_x10 / 10.0f);\
                                  LCD_DisplayStringLine(Line7, LCD_String_Buffer) 
-                                 
+#define UI_Set_Highlight() LCD_SetBackColor(Yellow); LCD_SetTextColor(Black)
+
+#define UI_Set_Background()   LCD_SetBackColor(Black);  LCD_SetTextColor(White)
+
 vu32 SW_Timer_Tick = 0;
 u8 LCD_String_Buffer[21] = {0}; // LCD显示字符缓存
 u8 LCD_Updata_Setting_Flag = 1;  // 刷新LCD设置标志位
@@ -28,22 +31,21 @@ u16 ADC_Val = 0;       // ADC数值
 
 void UI_Init(void)
 {
-  // 初始化LCD和LED
-  LCD_Init();
-  LCD_Clear(Black);
-  LCD_SetBackColor(Black);
-  LCD_SetTextColor(White);
-  LED_Disp(0);
-   
-  // 显示初始LCD界面 
-  LCD_DrawLine(8 + 36 + 8 + 16 + 8, 0, 320, Horizontal); // 画线
-  LCD_DrawLine(Line8 + 8, 0, 320, Horizontal);           // 画线
+    // 初始化LCD和LED
+    LCD_Init();
+    LCD_Clear(Black);
+    UI_Set_Background();
+    LED_Disp(0);
 
-  LCD_DisplayChineseString(8, 319 - 36 * 2 - 4, 0, 32, 5);        // 显示标题 信号发生器
-  LCD_DisplayChineseString(8 + 36 + 4, 319 - 16 * 4, 0, 16, 11);  // 显示姓名 未定
-  
-  LCD_DisplayChineseString(24 * 3 + 16, 319 -24 -8, 0, 24, 5);     // 显示 波形输出
-  LCD_DisplayChineseString(24 * 4 + 16 + 3, 319 -24 -8, 9, 24, 5); // 显示 波形选择
+    // 显示初始LCD界面 
+    LCD_DrawLine(8 + 36 + 8 + 16 + 8, 0, 320, Horizontal); // 画线
+    LCD_DrawLine(Line8 + 8, 0, 320, Horizontal);           // 画线
+
+    LCD_DisplayChineseString(8, 319 - 36 * 2 - 4, 0, 32, 5);        // 显示标题 信号发生器
+    LCD_DisplayChineseString(8 + 36 + 4, 319 - 16 * 4, 0, 16, 11);  // 显示姓名 未定
+
+    LCD_DisplayChineseString(24 * 3 + 16, 319 -24 -8, 0, 24, 5);     // 显示 波形输出
+    LCD_DisplayChineseString(24 * 4 + 16 + 3, 319 -24 -8, 9, 24, 5); // 显示 波形选择
 }
 
 void UI_Updata_Setting(void)
@@ -80,19 +82,16 @@ void UI_Update_Task(void)
     }
     SHOW_LCD_WAVE_ON_OR_OFF; // 显示波形输出：开启/关闭
     
-    LCD_SetBackColor(Black);
-    LCD_SetTextColor(White);
+    UI_Set_Background();
 
     // 根据设置索引高亮对应的选项
     switch(BLL_Set_Get_Setting_Index())
     {
     case 0: // 高亮显示波形种类
         
-        LCD_SetBackColor(Yellow);
-        LCD_SetTextColor(Black);
+        UI_Set_Highlight();
         SHOW_LCD_WAVE_MODE;      // 显示波形种类：正弦波/方波/三角波/锯齿波
-        LCD_SetBackColor(Black);
-        LCD_SetTextColor(White);  
+        UI_Set_Background(); 
         
         SHOW_LCD_WAVE_REAL_FREQ; // 显示波形实际频率
         SHOW_LCD_WAVE_REAL_VPP;  // 显示波形实际峰峰值
@@ -102,26 +101,21 @@ void UI_Update_Task(void)
         
         SHOW_LCD_WAVE_MODE; // 显示波形种类：正弦波/方波/三角波/锯齿波
         
-        LCD_SetBackColor(Yellow);
-        LCD_SetTextColor(Black);        
+        UI_Set_Highlight();    
         SHOW_LCD_WAVE_REAL_FREQ; // 显示波形实际频率  
-        LCD_SetBackColor(Black);
-        LCD_SetTextColor(White);
+        UI_Set_Background(); 
         
         SHOW_LCD_WAVE_REAL_VPP;  // 显示波形实际峰峰值
         break;
     
     case 2: // 高亮显示波形实际峰峰值
         
-        SHOW_LCD_WAVE_MODE; // 显示波形种类：正弦波/方波/三角波/锯齿波
-        
+        SHOW_LCD_WAVE_MODE;      // 显示波形种类：正弦波/方波/三角波/锯齿波
         SHOW_LCD_WAVE_REAL_FREQ; // 显示波形实际频率 
 
-        LCD_SetBackColor(Yellow);
-        LCD_SetTextColor(Black);         
+        UI_Set_Highlight();
         SHOW_LCD_WAVE_REAL_VPP;  // 显示波形实际峰峰值
-        LCD_SetBackColor(Black);
-        LCD_SetTextColor(White); 
+        UI_Set_Background(); 
         break;
     }
 }
