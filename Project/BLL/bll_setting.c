@@ -2,8 +2,8 @@
 #include "bll_setting.h"
 #include "bll_signal_generator.h"
 
-static vu8 Setting_Point = 0; // 设置项索引
-static u32 DAC_Timer_ARR;     // 定时器ARR
+static vu8 Setting_Pointer = 0; // 设置项索引
+static u32 DAC_Timer_ARR;       // 定时器ARR
 
 u8 WaveOut_Flag; // DAC输出波形开关
 u8 WaveMode;     // DAC输出波形设置
@@ -14,13 +14,13 @@ u16 DAC_Vpp_x10;   // 实际峰峰值的10倍
 // 返回设置索引
 u8 BLL_Set_Get_Setting_Index(void)
 {
-    return Setting_Point;
+    return Setting_Pointer;
 }
 
 // 设置索引
 void BLL_Set_Setting_Index(u8 Setting_Index)
 {
-    Setting_Point = Setting_Index;
+    Setting_Pointer = Setting_Index;
 }
 
 // 设置输出波形的频率
