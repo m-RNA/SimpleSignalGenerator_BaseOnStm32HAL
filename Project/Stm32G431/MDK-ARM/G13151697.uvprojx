@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32G431xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;   ../Drivers/STM32G4xx_HAL_Driver/Inc;   ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy;   ../Drivers/CMSIS/Device/ST/STM32G4xx/Include;   ../Drivers/CMSIS/Include;   ..\BSP\Inc;   ..\BLL\Inc;   ..\UI\Inc</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32G4xx_HAL_Driver/Inc;../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32G4xx/Include;../Drivers/CMSIS/Include;..\..\BLL\Inc;..\..\BSP\Inc;..\..\UI\Inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1147,47 +1147,47 @@
             <File>
               <FileName>bsp.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\BSP\Inc\bsp.h</FilePath>
-            </File>
-            <File>
-              <FileName>bsp_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\BSP\bsp_adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>bsp_key.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\BSP\bsp_key.c</FilePath>
-            </File>
-            <File>
-              <FileName>bsp_led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\BSP\bsp_led.c</FilePath>
-            </File>
-            <File>
-              <FileName>bsp_lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\BSP\bsp_lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>bsp_beep.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\BSP\bsp_beep.c</FilePath>
+              <FilePath>..\..\BSP\Inc\bsp.h</FilePath>
             </File>
             <File>
               <FileName>bsp_dac.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\BSP\Inc\bsp_dac.h</FilePath>
-            </File>
-            <File>
-              <FileName>bsp_uart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\BSP\Inc\bsp_uart.h</FilePath>
+              <FilePath>..\..\BSP\Inc\bsp_dac.h</FilePath>
             </File>
             <File>
               <FileName>bsp_tim.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\BSP\Inc\bsp_tim.h</FilePath>
+              <FilePath>..\..\BSP\Inc\bsp_tim.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_uart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\BSP\Inc\bsp_uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\bsp_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_beep.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\bsp_beep.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\bsp_key.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\bsp_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\bsp_led.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1197,37 +1197,37 @@
             <File>
               <FileName>bll.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\BLL\Inc\bll.h</FilePath>
-            </File>
-            <File>
-              <FileName>bll_signal_generator.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\BLL\bll_signal_generator.c</FilePath>
+              <FilePath>..\..\BLL\Inc\bll.h</FilePath>
             </File>
             <File>
               <FileName>bll_beep.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BLL\bll_beep.c</FilePath>
+              <FilePath>..\..\BLL\bll_beep.c</FilePath>
             </File>
             <File>
               <FileName>bll_setting.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BLL\bll_setting.c</FilePath>
+              <FilePath>..\..\BLL\bll_setting.c</FilePath>
             </File>
             <File>
               <FileName>bll_setting_by_key.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BLL\bll_setting_by_key.c</FilePath>
+              <FilePath>..\..\BLL\bll_setting_by_key.c</FilePath>
             </File>
             <File>
               <FileName>bll_setting_by_uart_receive_command.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BLL\bll_setting_by_uart_receive_command.c</FilePath>
+              <FilePath>..\..\BLL\bll_setting_by_uart_receive_command.c</FilePath>
+            </File>
+            <File>
+              <FileName>bll_signal_generator.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BLL\bll_signal_generator.c</FilePath>
             </File>
             <File>
               <FileName>bll_uart_send_data.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\BLL\bll_uart_send_data.c</FilePath>
+              <FilePath>..\..\BLL\bll_uart_send_data.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1237,7 +1237,7 @@
             <File>
               <FileName>ui.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\UI\ui.c</FilePath>
+              <FilePath>..\..\UI\ui.c</FilePath>
             </File>
           </Files>
         </Group>

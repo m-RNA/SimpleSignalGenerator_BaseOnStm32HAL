@@ -4,7 +4,6 @@
 #include "bll_setting.h"
 #include "math.h"
 #include "string.h"
-#include "opamp.h"
 
 static u16 SinTable[NPT]; // 模拟正弦波输出缓存区
 
@@ -23,7 +22,7 @@ void SinTable_Init(void)
 }
 
 /***************************************************/
-/****************    DAC部分     *******************/
+/**************    DAC码表部分     *****************/
 
 // 正弦波
 void SinWaveOut(void)
@@ -80,9 +79,6 @@ void StophWaveOut(void)
     memset(DAC_Val, 0, sizeof(DAC_Val));
 }
 
-//BSP_DAC_SetVal(DAC_Val); // 设置DAC值 
-//BLL_Uart_Send_Data_Allow();// 串口可以发送数据
-
 // 更新DAC输出表
 void DAC_Table_Update(void)
 {
@@ -128,7 +124,11 @@ void Signal_Generator_Init(void)
     
     // 设置输出波形的频率
     BLL_Set_Signal_Freq(2000); 
+    
+    #ifdef __OPAMP_H__
     HAL_OPAMP_Start(&hopamp1);    // STM32G4特别模块
+    #endif
+    
     BSP_DAC_Tiggle_Timer_Start(); // 开启控制DAC的定时器
     DAC_Table_Update(); // 开启DAC输出  
 }

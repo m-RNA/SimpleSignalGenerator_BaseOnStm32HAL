@@ -1,4 +1,3 @@
-#include "adc.h"
 #include "bsp_adc.h"
 
 u16 ADC2_GetAverageVal(void)
@@ -9,9 +8,9 @@ u16 ADC2_GetAverageVal(void)
     
     while(i--)
     {
-        HAL_ADC_Start(&hadc2);
-        HAL_ADC_PollForConversion(&hadc2, 100);
-        ADC_Sum+=HAL_ADC_GetValue(&hadc2);
+        HAL_ADC_Start(&ADC_MOUDLE);
+        HAL_ADC_PollForConversion(&ADC_MOUDLE, 100);
+        ADC_Sum+=HAL_ADC_GetValue(&ADC_MOUDLE);
     }
     return ADC_Sum / ADD_TIMES;
 }

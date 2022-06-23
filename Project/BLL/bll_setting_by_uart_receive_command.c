@@ -87,6 +87,8 @@ void UART_Check_Rx_Command_Task(void)
         
         sprintf((char*)Tx_Buffer, "Signal Generator>> Set OK.\n");
         BSP_UART_Send(Tx_Buffer);
+		
+		BLL_Uart_Send_Data_Allow(); // 发送设置波形数据
         
         UI_Updata_Setting(); // 更新LCD界面
         
