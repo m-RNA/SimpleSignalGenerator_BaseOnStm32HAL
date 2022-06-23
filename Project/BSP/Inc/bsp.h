@@ -24,10 +24,23 @@
 
 #elif defined (STM32F103xE)
 #define GPIO_SPEED_FREQ_VERY_HIGH GPIO_SPEED_FREQ_HIGH
+
 #define ADC_MOUDLE       hadc1
 #define DAC_MOUDLE       hdac
 #define DAC_TIGGLE_TIMER htim2
 #define DAC_TIGGLE_TIMER_FREQ 72000000
+
+#else // 自己移植
+
+// #define GPIO_SPEED_FREQ_VERY_HIGH GPIO_SPEED_FREQ_HIGH // 编译有错误时取消该注释
+
+//#include "opamp.h" // 是否有用OPAMP模块
+
+#define ADC_MOUDLE       hadc  // 使用哪个ADC模块
+#define DAC_MOUDLE       hdac  // 使用哪个DAC模块
+#define DAC_TIGGLE_TIMER htim2 // 使用哪个定时器
+#define DAC_TIGGLE_TIMER_FREQ 72000000 //时钟频率
+
 #endif
 
 
