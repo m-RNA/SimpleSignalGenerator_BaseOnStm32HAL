@@ -1,7 +1,6 @@
 #include "bsp_key.h"
-#include "adc.h"
 
-u8 KEY_Scan(void)
+u8 BSP_KEY_Scan(void)
 {
     if(HAL_GPIO_ReadPin(KEY1_GPIO_Port, KEY1_Pin) == GPIO_PIN_RESET)
         return 1;

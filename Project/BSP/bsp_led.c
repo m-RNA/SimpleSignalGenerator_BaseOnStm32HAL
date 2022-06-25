@@ -1,6 +1,6 @@
 #include "bsp_led.h"
 
-void LED_Disp(u8 ucLED)
+void BSP_LED_Disp(u8 ucLED)
 {
     HAL_GPIO_WritePin(GPIOC, 0xFF00,GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOC, ucLED<<8,GPIO_PIN_RESET);

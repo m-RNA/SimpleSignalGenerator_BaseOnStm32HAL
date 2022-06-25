@@ -3,17 +3,7 @@
 
 #include "main.h"
 
-extern u8 WaveOut_Flag;   // DAC输出波形开启关闭
-extern u8 WaveMode;       // DAC输出波形设置
-
-extern u32 DAC_Wave_Freq; // 实际频率
-extern u16 DAC_Vpp_x10;   // 实际峰峰值的10倍
-
-u8 BLL_Set_Get_Setting_Index(void);           // 返回设置索引
-void BLL_Set_Setting_Index(u8 Setting_Index); // 设置设置索引
-
-void BLL_Set_Signal_Freq(u32 Freq);   // 设置输出波形的频率
-void BLL_Set_Signal_Vpp(u16 Vpp_x10); // 设置输出波形的峰峰值
+void BLL_Signal_Freq_Update(void);
+void BLL_Signal_Vpp_Update(void);
 
 #endif
-

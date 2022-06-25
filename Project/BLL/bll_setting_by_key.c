@@ -2,16 +2,12 @@
 /**************    按键逻辑部分     ****************/
 #include "bsp_key.h"
 #include "bll.h"
-#include "bll_setting.h"
-#include "bll_setting_by_key.h"
-#include "bll_signal_generator.h"
-#include "bll_beep.h"
 #include "ui.h"
 #include "tim.h"
+#include "signal_generator_system.h"
 
 static vu32 SW_Timer_Tick = 0;
 static vu32 SW_Timer_KEY_Hold_Tick = 0;
-vu8 Setting_Point_In_KEY = 0;
 
 static u8 KEY_Val, KEY_Down, KEY_Up, KEY_Old = 0; // 按键相关变量
 
@@ -21,16 +17,16 @@ void KEY_Task(void)
     Task_Delay(75); // 每75ms 检测一次
 
     // 检测按键
-    KEY_Val = KEY_Scan();
+    KEY_Val = BSP_KEY_Scan();
     KEY_Down = KEY_Val & (KEY_Val ^ KEY_Old);
     KEY_Up = ~KEY_Val & (KEY_Val ^ KEY_Old);
     KEY_Old = KEY_Val;
 
     if (KEY_Down)
     {
-        UI_Updata_Setting(); // 更新LCD界面
+        gpUI->Reflash(); // 更新LCD界面
 
-        BLL_Beep_On_Tick(1); // 蜂鸣器鸣叫
+        gpBEEP->ON_Tick(1); // 蜂鸣器鸣叫
 
         SW_Timer_KEY_Hold_Tick = BSP_GetTick() + KEY_LONG_HOLD_TICK;
     }
@@ -40,96 +36,94 @@ void KEY_Task(void)
         switch (KEY_Up)
         {
         case 1: // 控制波形是否输出
-            WaveOut_Flag = !WaveOut_Flag;
-            if (WaveOut_Flag)
-                DAC_Table_Update(); //开启输出
+            gpSignal_Generator->State.OFF_ON = !gpSignal_Generator->State.OFF_ON;
+            if (gpSignal_Generator->State.OFF_ON)
+                gpSignal_Generator->Set.Table_Update(); //开启输出
             else
-                BSP_DAC_STOP(); // 关闭输出
+                gpSignal_Generator->Set.OFF(); // 关闭输出
             break;
 
         case 2: // 改变设置选项
-            Setting_Point_In_KEY = BLL_Set_Get_Setting_Index();
-            if (++Setting_Point_In_KEY >= 3)
-                Setting_Point_In_KEY = 0;
-            BLL_Set_Setting_Index(Setting_Point_In_KEY);
+            if (++gpSignal_Generator->State.KEY_Setting_Index >= 3)
+                gpSignal_Generator->State.KEY_Setting_Index = 0;
             break;
 
         case 3:
-            switch (BLL_Set_Get_Setting_Index())
+            switch (gpSignal_Generator->State.KEY_Setting_Index)
             {
             case 0: // 改变输出波形
 
-                --WaveMode;
+                --gpSignal_Generator->State.Mode;
 
-                if (WaveMode == 0)
-                    WaveMode = 4;
+                if (gpSignal_Generator->State.Mode == Stop)
+                    gpSignal_Generator->State.Mode = (WaveOut_TYPE)4;
                 break;
 
             case 1: // 改变波形频率
 
-                if (DAC_Wave_Freq < 10)
-                    DAC_Wave_Freq++;
-                else if (DAC_Wave_Freq < 100)
-                    DAC_Wave_Freq += 10;
-                else if (DAC_Wave_Freq < 1000)
-                    DAC_Wave_Freq += 100;
-                else if (DAC_Wave_Freq < 100000)
-                    DAC_Wave_Freq += 1000;
+                if (gpSignal_Generator->State.Freq < 10)
+                    gpSignal_Generator->State.Freq++;
+                else if (gpSignal_Generator->State.Freq < 100)
+                    gpSignal_Generator->State.Freq += 10;
+                else if (gpSignal_Generator->State.Freq < 1000)
+                    gpSignal_Generator->State.Freq += 100;
+                else if (gpSignal_Generator->State.Freq < 100000)
+                    gpSignal_Generator->State.Freq += 1000;
 
-                BLL_Set_Signal_Freq(DAC_Wave_Freq);
+                gpSignal_Generator->Set.Freq_Update();
                 break;
 
             case 2: // 改变波形峰峰值
 
-                DAC_Vpp_x10 += 2;
-                if (DAC_Vpp_x10 >= 34)
-                    DAC_Vpp_x10 = 33;
+                gpSignal_Generator->State.Vpp_x10 += 2;
+                if (gpSignal_Generator->State.Vpp_x10 >= 34)
+                    gpSignal_Generator->State.Vpp_x10 = 33;
 
-                BLL_Set_Signal_Vpp(DAC_Vpp_x10);
+                gpSignal_Generator->Set.Vpp_Update();
                 break;
             }
 
-            BLL_Uart_Send_Data_Allow();
-            DAC_Table_Update();
+            gpCommunity->SendDataAllow();
+            gpSignal_Generator->Set.Table_Update();
             break;
 
         case 4:
-            switch (BLL_Set_Get_Setting_Index())
+            switch (gpSignal_Generator->State.KEY_Setting_Index)
             {
             case 0: // 改变输出波形
 
-                ++WaveMode;
+                ++gpSignal_Generator->State.Mode;
 
-                if (WaveMode >= 5)
-                    WaveMode = 1;
+                if (gpSignal_Generator->State.Mode >= (WaveOut_TYPE)5)
+                    gpSignal_Generator->State.Mode = Sin;
                 break;
 
             case 1: // 改变波形频率
 
-                if (DAC_Wave_Freq > 1000)
-                    DAC_Wave_Freq -= 1000;
-                else if (DAC_Wave_Freq > 100)
-                    DAC_Wave_Freq -= 100;
-                else if (DAC_Wave_Freq > 10)
-                    DAC_Wave_Freq -= 10;
-                else if (DAC_Wave_Freq > 1)
-                    DAC_Wave_Freq--;
+                if (gpSignal_Generator->State.Freq > 1000)
+                    gpSignal_Generator->State.Freq -= 1000;
+                else if (gpSignal_Generator->State.Freq > 100)
+                    gpSignal_Generator->State.Freq -= 100;
+                else if (gpSignal_Generator->State.Freq > 10)
+                    gpSignal_Generator->State.Freq -= 10;
+                else if (gpSignal_Generator->State.Freq > 1)
+                    gpSignal_Generator->State.Freq--;
 
-                BLL_Set_Signal_Freq(DAC_Wave_Freq);
+                gpSignal_Generator->Set.Freq_Update();
                 break;
 
             case 2: // 改变波形峰峰值
 
-                DAC_Vpp_x10 -= 2;
-                if (DAC_Vpp_x10 < 15)
-                    DAC_Vpp_x10 = 15;
+                gpSignal_Generator->State.Vpp_x10 -= 2;
+                if (gpSignal_Generator->State.Vpp_x10 < 15)
+                    gpSignal_Generator->State.Vpp_x10 = 15;
 
-                BLL_Set_Signal_Vpp(DAC_Vpp_x10);
+                gpSignal_Generator->Set.Vpp_Update();
                 break;
             }
 
             BLL_Uart_Send_Data_Allow();
-            DAC_Table_Update();
+            BLL_DAC_Table_Update();
             break;
         }
     }
@@ -139,48 +133,48 @@ void KEY_Task(void)
         {
         case 3:
 
-            switch (BLL_Set_Get_Setting_Index())
+            switch (gpSignal_Generator->State.KEY_Setting_Index)
             {
             case 1: // 改变波形频率
 
-                if (DAC_Wave_Freq < 10)
-                    DAC_Wave_Freq++;
-                else if (DAC_Wave_Freq < 100)
-                    DAC_Wave_Freq += 10;
-                else if (DAC_Wave_Freq < 1000)
-                    DAC_Wave_Freq += 100;
-                else if (DAC_Wave_Freq < 1000000)
-                    DAC_Wave_Freq += 1000;
+                if (gpSignal_Generator->State.Freq < 10)
+                    gpSignal_Generator->State.Freq++;
+                else if (gpSignal_Generator->State.Freq < 100)
+                    gpSignal_Generator->State.Freq += 10;
+                else if (gpSignal_Generator->State.Freq < 1000)
+                    gpSignal_Generator->State.Freq += 100;
+                else if (gpSignal_Generator->State.Freq < 1000000)
+                    gpSignal_Generator->State.Freq += 1000;
 
-                BLL_Set_Signal_Freq(DAC_Wave_Freq);
+                gpSignal_Generator->Set.Freq_Update();
                 break;
             }
             BLL_Uart_Send_Data_Allow();
-            DAC_Table_Update();
+            BLL_DAC_Table_Update();
 
             break;
 
         case 4:
 
-            switch (BLL_Set_Get_Setting_Index())
+            switch (gpSignal_Generator->State.KEY_Setting_Index)
             {
 
             case 1: // 改变波形频率
 
-                if (DAC_Wave_Freq > 1000)
-                    DAC_Wave_Freq -= 1000;
-                else if (DAC_Wave_Freq > 100)
-                    DAC_Wave_Freq -= 100;
-                else if (DAC_Wave_Freq > 10)
-                    DAC_Wave_Freq -= 10;
-                else if (DAC_Wave_Freq > 1)
-                    DAC_Wave_Freq--;
+                if (gpSignal_Generator->State.Freq > 1000)
+                    gpSignal_Generator->State.Freq -= 1000;
+                else if (gpSignal_Generator->State.Freq > 100)
+                    gpSignal_Generator->State.Freq -= 100;
+                else if (gpSignal_Generator->State.Freq > 10)
+                    gpSignal_Generator->State.Freq -= 10;
+                else if (gpSignal_Generator->State.Freq > 1)
+                    gpSignal_Generator->State.Freq--;
 
-                BLL_Set_Signal_Freq(DAC_Wave_Freq);
+                gpSignal_Generator->Set.Freq_Update();
                 break;
             }
             BLL_Uart_Send_Data_Allow();
-            DAC_Table_Update();
+            BLL_DAC_Table_Update();
 
             break;
         }

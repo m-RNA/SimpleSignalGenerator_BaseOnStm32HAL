@@ -1,36 +1,36 @@
-#include "bsp.h"
+#include "bll.h"
 #include "bll_signal_generator.h"
-#include "bll_uart_send_data.h"
-#include "bll_setting.h"
 #include "math.h"
 #include "string.h"
+#include "signal_generator_system.h"
+
+#define PI2 6.28318530717959
 
 static u16 SinTable[NPT]; // 模拟正弦波输出缓存区
+// static u16 User_Table[5][NPT] = {0}; // 用户输出缓存区
 
-static u16 DAC_Val[NPT] = {0};   // DAC数值
-
-static float k = 1.0f; // 控制峰峰值中间参数 比例系数
+static u16 DAC_Val[NPT] = {0}; // DAC数值
 
 //初始化sin表
-void SinTable_Init(void)
+void BLL_SinTable_Init(void)
 {
-	u16 i;
-	for (i = 0; i < NPT; i++)
-	{
-		SinTable[i] = (u16)(2080 + 1990 * sin((PI2 * i) / NPT));
-	}
+    u16 i;
+    for (i = 0; i < NPT; i++)
+    {
+        SinTable[i] = (u16)(2080 + 1990 * sin((PI2 * i) / NPT));
+    }
 }
 
-/***************************************************/
+/**************************************************/
 /**************    DAC码表部分     *****************/
 
 // 正弦波
 void SinWaveOut(void)
 {
     u16 i;
-	for(i = 0; i < NPT; i++)
+    for (i = 0; i < NPT; i++)
     {
-        DAC_Val[i] = k * SinTable[i];
+        DAC_Val[i] = gpSignal_Generator->State.k * SinTable[i];
     }
 }
 
@@ -38,13 +38,13 @@ void SinWaveOut(void)
 void SquareWaveOut(void)
 {
     u16 i;
-    u16 temp = 4095 * k;
-	for(i = 0; i < NPT; i++)
+    u16 temp = 4095 * gpSignal_Generator->State.k;
+    for (i = 0; i < NPT; i++)
     {
-        if (i < NPT>>1)
+        if (i < NPT >> 1)
             DAC_Val[i] = temp;
         else
-            DAC_Val[i] = 0;    
+            DAC_Val[i] = 0;
     }
 }
 
@@ -52,14 +52,14 @@ void SquareWaveOut(void)
 void TriangularWaveOut(void)
 {
     u16 i, j;
-	for(i = 0, j = 0; i < NPT; i++)
+    for (i = 0, j = 0; i < NPT; i++)
     {
-        DAC_Val[i] =  j * 2 * 4095 / NPT * k;
-        
-        if (i < NPT>>1)
+        DAC_Val[i] = j * 2 * 4095 / NPT * gpSignal_Generator->State.k;
+
+        if (i < NPT >> 1)
             j++;
         else
-            j--;       
+            j--;
     }
 }
 
@@ -67,9 +67,9 @@ void TriangularWaveOut(void)
 void SawtoothWaveOut(void)
 {
     u16 i;
-	for(i = 0; i < NPT; i++)
+    for (i = 0; i < NPT; i++)
     {
-        DAC_Val[i] =  i * 4096 / NPT * k;
+        DAC_Val[i] = i * 4096 / NPT * gpSignal_Generator->State.k;
     }
 }
 
@@ -80,16 +80,16 @@ void StophWaveOut(void)
 }
 
 // 更新DAC输出表
-void DAC_Table_Update(void)
+void BLL_DAC_Table_Update(void)
 {
-    BSP_DAC_STOP(); // 关闭输出
-    if(WaveOut_Flag == 0)
+    gpSignal_Generator->Set.OFF(); // 关闭输出
+    if (gpSignal_Generator->State.OFF_ON == 0)
     {
-       StophWaveOut();
+        StophWaveOut();
     }
     else
     {
-        switch(WaveMode)
+        switch (gpSignal_Generator->State.Mode)
         {
         case 0:
             StophWaveOut();
@@ -99,42 +99,39 @@ void DAC_Table_Update(void)
             break;
         case 2:
             SquareWaveOut();
-            break;    
+            break;
         case 3:
             TriangularWaveOut();
-            break;    
+            break;
         case 4:
             SawtoothWaveOut();
-            break;    
+            break;
         }
     }
-    BSP_DAC_START(); //开启输出
+    gpSignal_Generator->Set.ON((uint32_t *)DAC_Val, NPT); //开启输出
 }
 
 void Signal_Generator_Init(void)
 {
-    // sin表初始化
-    SinTable_Init();
-    
-    WaveOut_Flag = 0; // 关闭输出
-    WaveMode = 1;     // 设置为正弦波
+    // PSignal_Generator_Type pSG = Get_Signal_Generator_Index();
+    //  sin表初始化
+    BLL_SinTable_Init();
+
+    gpSignal_Generator->State.OFF_ON = 0; // 关闭输出
+    gpSignal_Generator->State.Mode = Sin; // 设置为正弦波
 
     // 设置输出波形的峰峰值
-    BLL_Set_Signal_Vpp(25);
-    
-    // 设置输出波形的频率
-    BLL_Set_Signal_Freq(2000); 
-    
-    #ifdef __OPAMP_H__
-    HAL_OPAMP_Start(&hopamp1);    // STM32G4特别模块
-    #endif
-    
-    BSP_DAC_Tiggle_Timer_Start(); // 开启控制DAC的定时器
-    DAC_Table_Update(); // 开启DAC输出  
-}
+    gpSignal_Generator->State.Vpp_x10 = 25;
+    gpSignal_Generator->Set.Vpp_Update();
 
-// 设置比例系数
-void BLL_Signal_Generator_Set_k(float temp_k)
-{
-    k = temp_k;
+    // 设置输出波形的频率
+    gpSignal_Generator->State.Freq = 2000;
+    gpSignal_Generator->Set.Freq_Update();
+
+#ifdef __OPAMP_H__
+    HAL_OPAMP_Start(&hopamp1); // STM32G4特别模块
+#endif
+
+    BSP_DAC_Tiggle_Timer_Start();           // 开启控制DAC的定时器
+    gpSignal_Generator->Set.Table_Update(); // 开启DAC输出
 }

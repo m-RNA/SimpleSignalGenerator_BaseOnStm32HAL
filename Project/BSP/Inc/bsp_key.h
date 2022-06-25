@@ -3,6 +3,6 @@
 
 #include "main.h"
 
-u8 KEY_Scan(void);
+u8 BSP_KEY_Scan(void);
 
 #endif

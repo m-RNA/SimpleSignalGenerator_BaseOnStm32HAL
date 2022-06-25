@@ -5,7 +5,6 @@
 #include "bsp.h"
 #include "adc.h"
 
-u16 ADC1_GetAverageVal(void);
-u16 ADC2_GetAverageVal(void);
+u16 BSP_ADC_GetAverageVal(void);
 
 #endif

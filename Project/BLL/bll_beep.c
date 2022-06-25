@@ -17,11 +17,11 @@ void BEEP_Task(void)
 {
     if(BEEP_State) 
     {
-        BEEP_Ctrl(1); //打开蜂鸣器
+        BSP_BEEP_Crtl(1); //打开蜂鸣器
         
         if(SW_Timer_Tick < BSP_GetTick())  // 计时是否结束
         {
-            BEEP_Ctrl(0); //关闭蜂鸣器
+            BSP_BEEP_Crtl(0); //关闭蜂鸣器
             BEEP_State = 0;
         }    
     }

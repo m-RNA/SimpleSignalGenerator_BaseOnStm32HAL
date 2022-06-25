@@ -3,7 +3,7 @@
 
 #include "main.h"
 
-void LED_Disp(u8 ucLED);
+void BSP_LED_Disp(u8 ucLED);
 
 #endif
 

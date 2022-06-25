@@ -127,7 +127,7 @@ int main(void)
   while (1)
   {
       KEY_Task();  // 按键逻辑检测
-      //BEEP_Task(); // 蜂鸣器任务
+      BEEP_Task(); // 蜂鸣器任务
       UI_Update_Task();  // 界面刷新任务
       
       UART_Send_AD_Data_Task();     // 实时数据发送任务

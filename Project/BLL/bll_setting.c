@@ -1,39 +1,18 @@
 #include "bsp.h"
 #include "bll_setting.h"
 #include "bll_signal_generator.h"
-
-static vu8 Setting_Pointer = 0; // 设置项索引
-static u32 DAC_Timer_ARR;       // 定时器ARR
-
-u8 WaveOut_Flag; // DAC输出波形开关
-u8 WaveMode;     // DAC输出波形设置
-
-u32 DAC_Wave_Freq; // 实际频率
-u16 DAC_Vpp_x10;   // 实际峰峰值的10倍
-
-// 返回设置索引
-u8 BLL_Set_Get_Setting_Index(void)
-{
-    return Setting_Pointer;
-}
-
-// 设置索引
-void BLL_Set_Setting_Index(u8 Setting_Index)
-{
-    Setting_Pointer = Setting_Index;
-}
+#include "signal_generator_system.h"
 
 // 设置输出波形的频率
-void BLL_Set_Signal_Freq(u32 Freq)
+void BLL_Signal_Freq_Update(void)
 {
-    DAC_Wave_Freq = Freq;
-    DAC_Timer_ARR = DAC_TIGGLE_TIMER_FREQ / NPT / DAC_Wave_Freq;
-    __HAL_TIM_SET_AUTORELOAD(&DAC_TIGGLE_TIMER, DAC_Timer_ARR);
+    // gpSignal_Generator->State.Freq = Freq;
+    BSP_DAC_Tiggle_Timer_Set_ARR(DAC_TIGGLE_TIMER_FREQ / NPT / gpSignal_Generator->State.Freq);
 }
 
 // 设置输出波形的峰峰值
-void BLL_Set_Signal_Vpp(u16 Vpp_x10)
+void BLL_Signal_Vpp_Update(void)
 {
-    DAC_Vpp_x10 = Vpp_x10;
-    BLL_Signal_Generator_Set_k(DAC_Vpp_x10 / 33.0f);
+    gpSignal_Generator->State.k = gpSignal_Generator->State.Vpp_x10 / 33.0f;
+    gpSignal_Generator->Set.Table_Update();
 }

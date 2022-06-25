@@ -1,6 +1,6 @@
 #include "bsp_adc.h"
 
-u16 ADC2_GetAverageVal(void)
+u16 BSP_ADC_GetAverageVal(void)
 {
     u32 ADC_Sum = 0;
     #define ADD_TIMES 8

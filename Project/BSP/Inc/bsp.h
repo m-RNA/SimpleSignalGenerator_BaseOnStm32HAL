@@ -14,19 +14,19 @@
 
 #define BSP_GetTick() HAL_GetTick()
 
-#if defined (STM32G431xx)
+#if defined(STM32G431xx)
 #include "opamp.h"
 
-#define ADC_MOUDLE       hadc2
-#define DAC_MOUDLE       hdac3
+#define ADC_MOUDLE hadc2
+#define DAC_MOUDLE hdac3
 #define DAC_TIGGLE_TIMER htim2
 #define DAC_TIGGLE_TIMER_FREQ 170000000
 
-#elif defined (STM32F103xE)
+#elif defined(STM32F103xE)
 #define GPIO_SPEED_FREQ_VERY_HIGH GPIO_SPEED_FREQ_HIGH
 
-#define ADC_MOUDLE       hadc1
-#define DAC_MOUDLE       hdac
+#define ADC_MOUDLE hadc1
+#define DAC_MOUDLE hdac
 #define DAC_TIGGLE_TIMER htim2
 #define DAC_TIGGLE_TIMER_FREQ 72000000
 
@@ -36,12 +36,11 @@
 
 //#include "opamp.h" // 是否有用OPAMP模块
 
-#define ADC_MOUDLE       hadc  // 使用哪个ADC模块
-#define DAC_MOUDLE       hdac  // 使用哪个DAC模块
-#define DAC_TIGGLE_TIMER htim2 // 使用哪个定时器
+#define ADC_MOUDLE hadc                // 使用哪个ADC模块
+#define DAC_MOUDLE hdac                // 使用哪个DAC模块
+#define DAC_TIGGLE_TIMER htim2         // 使用哪个定时器
 #define DAC_TIGGLE_TIMER_FREQ 72000000 //时钟频率
 
 #endif
-
 
 #endif
