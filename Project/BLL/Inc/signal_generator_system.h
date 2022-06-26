@@ -31,11 +31,9 @@ typedef struct
     void (*OFF)(void);      // 关闭波形输出
     void (*ON)(u32 *, u16); // 开启波形输出
 
-    void (*Type)(WaveOut_TYPE); // 设置生成的波形
     void (*Table_Update)(void); // 更新DAC输出表
-
-    void (*Freq_Update)(void); // 更新输出频率
-    void (*Vpp_Update)(void);  // 更新输出峰峰值
+    void (*Freq_Update)(void);  // 更新输出频率
+    void (*Vpp_Update)(void);   // 更新输出峰峰值
 } Signal_Generator_Set_Type, *PSignal_Generator_Set_Type;
 
 typedef struct

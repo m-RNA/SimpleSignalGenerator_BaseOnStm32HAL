@@ -4,46 +4,46 @@
 #include "ui.h"
 
 Signal_Generator_Type Signal_Generator = {
-    Signal_Generator_Init,
-    {0, Sin, 2000, 25, 0.0f, 0},
-    {
-        BSP_DAC_Stop,
-        BSP_DAC_Start,
+    .Init = Signal_Generator_Init,
 
-        (void *)0,
-        BLL_DAC_Table_Update,
+    .State.OFF_ON = 0,
+    .State.Mode = Sin,
+    .State.Freq = 2000,
+    .State.Vpp_x10 = 25,
+    .State.k = 0.0f,
+    .State.KEY_Setting_Index = 0,
 
-        BLL_Signal_Freq_Update,
-        BLL_Signal_Vpp_Update,
-    },
-    BLL_Beep_On_Tick,
-    BLL_Uart_Send_Data_Allow,
+    .Set.OFF = BSP_DAC_Stop,
+    .Set.ON = BSP_DAC_Start,
+    .Set.Table_Update = BLL_DAC_Table_Update,
+    .Set.Freq_Update = BLL_Signal_Freq_Update,
+    .Set.Vpp_Update = BLL_Signal_Vpp_Update,
 };
 
 UI_Type UI = {
-    UI_Init,
-    UI_Update_Task,
-    UI_Updata_Setting,
+    .Init = UI_Init,
+    .UpdateTask = UI_Update_Task,
+    .Reflash = UI_Updata_Setting,
 };
 
 BEEP_Type BEEP = {
-    (void *)0,
-    BEEP_Task,
-    BLL_Beep_On_Tick,
-    BSP_BEEP_Crtl,
+    .Init = (void *)0,
+    .Task = BEEP_Task,
+    .ON_Tick = BLL_Beep_On_Tick,
+    .Ctrl = BSP_BEEP_Crtl,
 };
 
 KEY_Type KEY = {
-    (void *)0,
-    KEY_Task,
-    BSP_KEY_Scan,
+    .Init = (void *)0,
+    .Task = KEY_Task,
+    .Scan = BSP_KEY_Scan,
 };
 
 Community_Type Community = {
-    Receive_Uart_Command_Init,
-    UART_Send_AD_Data_Task,
-    UART_Check_Rx_Command_Task,
-    BLL_Uart_Send_Data_Allow,
+    .Init = Receive_Uart_Command_Init,
+    .SendDataTask = UART_Send_AD_Data_Task,
+    .ReceiveCommandTask = UART_Check_Rx_Command_Task,
+    .SendDataAllow = BLL_Uart_Send_Data_Allow,
 };
 
 PUI_Type gpUI = &UI;
