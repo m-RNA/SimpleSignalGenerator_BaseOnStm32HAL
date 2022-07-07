@@ -49,23 +49,8 @@ typedef struct
 {
     void (*Init)(void);
     void (*Task)(void);
-    void (*ON_Tick)(u8 Tick);
-    void (*Ctrl)(u8 State);
-} BEEP_Type, *PBEEP_Type;
-
-typedef struct
-{
-    void (*Init)(void);
-    void (*Task)(void);
     u8 (*Scan)(void);
 } KEY_Type, *PKEY_Type;
-
-typedef struct
-{
-    void (*Init)(void);
-    void (*UpdateTask)(void);
-    void (*Reflash)(void);
-} UI_Type, *PUI_Type;
 
 typedef struct
 {
@@ -76,8 +61,6 @@ typedef struct
 } Community_Type, *PCommunity_Type;
 
 extern PSignal_Generator_Type gpSignal_Generator;
-extern PBEEP_Type gpBEEP;
-extern PUI_Type gpUI;
 extern PCommunity_Type gpCommunity;
 extern PKEY_Type gpKEY;
 

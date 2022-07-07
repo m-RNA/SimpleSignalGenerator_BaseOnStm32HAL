@@ -24,6 +24,7 @@
 #define SHOW_LCD_WAVE_REAL_VPP                                                                          \
     snprintf((char *)LCD_String_Buffer, 20, "  Vpp:%3.1fV", gpSignal_Generator->State.Vpp_x10 / 10.0f); \
     LCD_DisplayStringLine(Line7, LCD_String_Buffer)
+
 #define UI_Set_Highlight()    \
     LCD_SetBackColor(Yellow); \
     LCD_SetTextColor(Black)
@@ -32,13 +33,13 @@
     LCD_SetBackColor(Black); \
     LCD_SetTextColor(White)
 
-vu32 SW_Timer_Tick = 0;
-u8 LCD_String_Buffer[21] = {0}; // LCD显示字符缓存
-u8 LCD_Updata_Setting_Flag = 1; // 刷新LCD设置标志位
+static vu32 SW_Timer_Tick = 0;
+static u8 LCD_String_Buffer[21] = {0}; // LCD显示字符缓存
+static u8 LCD_Updata_Setting_Flag = 1; // 刷新LCD设置标志位
 
-u16 ADC_Val = 0; // ADC数值
+static u16 ADC_Val = 0; // ADC数值
 
-void UI_Init(void)
+static void UI_Init(void)
 {
     // 初始化LCD和LED
     LCD_Init();
@@ -57,12 +58,12 @@ void UI_Init(void)
     LCD_DisplayChineseString(24 * 4 + 16 + 3, 319 - 24 - 8, 9, 24, 5); // 显示 波形选择
 }
 
-void UI_Updata_Setting(void)
+static void UI_Updata_Setting(void)
 {
     LCD_Updata_Setting_Flag = 1;
 }
 
-void UI_Update_Task(void)
+static void UI_Update_Task(void)
 {
     Task_Delay(90); // 每90ms 刷新一次
 
@@ -128,3 +129,10 @@ void UI_Update_Task(void)
         break;
     }
 }
+
+UI_Type UI = {
+    .Init = UI_Init,
+    .UpdateTask = UI_Update_Task,
+    .Reflash = UI_Updata_Setting,
+};
+pUI_Type gpUI = &UI;

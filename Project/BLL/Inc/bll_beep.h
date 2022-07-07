@@ -3,11 +3,16 @@
 
 #include "main.h"
 
-#define BEEP_TIME 30     // 蜂鸣器默认鸣叫节拍时长ms
+typedef struct
+{
+    void (*Init)(void);
+    void (*Task)(void);
+    void (*ON_Tick)(u8 Tick);
+    void (*Ctrl)(u8 State);
+} BEEP_Type, *pBEEP_Type;
 
-void BLL_Beep_On_Tick(u8 Tick);
+#define BEEP_TIME 30 // 蜂鸣器默认鸣叫节拍时长ms
 
-void BEEP_Task(void);  // 蜂鸣器任务
+extern pBEEP_Type gpBEEP;
 
 #endif
-

@@ -12,7 +12,7 @@ static u16 SinTable[NPT]; // 模拟正弦波输出缓存区
 static u16 DAC_Val[NPT] = {0}; // DAC数值
 
 //初始化sin表
-void BLL_SinTable_Init(void)
+static void BLL_SinTable_Init(void)
 {
     u16 i;
     for (i = 0; i < NPT; i++)
@@ -25,7 +25,7 @@ void BLL_SinTable_Init(void)
 /**************    DAC码表部分     *****************/
 
 // 正弦波
-void SinWaveOut(void)
+static void SinWaveOut(void)
 {
     u16 i;
     for (i = 0; i < NPT; i++)
@@ -35,7 +35,7 @@ void SinWaveOut(void)
 }
 
 // 方波
-void SquareWaveOut(void)
+static void SquareWaveOut(void)
 {
     u16 i;
     u16 temp = 4095 * gpSignal_Generator->State.k;
@@ -49,7 +49,7 @@ void SquareWaveOut(void)
 }
 
 // 三角波
-void TriangularWaveOut(void)
+static void TriangularWaveOut(void)
 {
     u16 i, j;
     for (i = 0, j = 0; i < NPT; i++)
@@ -64,7 +64,7 @@ void TriangularWaveOut(void)
 }
 
 // 锯齿波
-void SawtoothWaveOut(void)
+static void SawtoothWaveOut(void)
 {
     u16 i;
     for (i = 0; i < NPT; i++)
@@ -74,7 +74,7 @@ void SawtoothWaveOut(void)
 }
 
 // 停止输出
-void StophWaveOut(void)
+static void StophWaveOut(void)
 {
     memset(DAC_Val, 0, sizeof(DAC_Val));
 }
@@ -113,7 +113,6 @@ void BLL_DAC_Table_Update(void)
 
 void Signal_Generator_Init(void)
 {
-    // PSignal_Generator_Type pSG = Get_Signal_Generator_Index();
     //  sin表初始化
     BLL_SinTable_Init();
 

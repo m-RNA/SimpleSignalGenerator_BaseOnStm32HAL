@@ -1,7 +1,7 @@
 Dependencies for Project '103test', Target '103test': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::ARMCC
 F (startup_stm32f103xe.s)(0x62B45456)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include--pd "__UVISION_VERSION SETA 536" --pd "_RTE_ SETA 1" --pd "STM32F10X_HD SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f103xe.lst --xref -o 103test\startup_stm32f103xe.o --depend 103test\startup_stm32f103xe.d)
-F (../Core/Src/main.c)(0x62B721ED)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\main.o --omf_browse 103test\main.crf --depend 103test\main.d)
+F (../Core/Src/main.c)(0x62B818C1)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\main.o --omf_browse 103test\main.crf --depend 103test\main.d)
 I (../Core/Inc/main.h)(0x62B45452)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x615309D4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x62B45452)
@@ -40,7 +40,9 @@ I (../Core/Inc/dma.h)(0x62B45451)
 I (../Core/Inc/tim.h)(0x62B45451)
 I (../Core/Inc/usart.h)(0x62B45451)
 I (../Core/Inc/gpio.h)(0x62B45450)
-I (..\..\BLL\Inc\signal_generator_system.h)(0x62B7E1A8)
+I (..\..\BLL\Inc\signal_generator_system.h)(0x62B817EF)
+I (..\..\BLL\Inc\bll_beep.h)(0x62B8172C)
+I (..\..\UI\Inc\ui.h)(0x62B818AC)
 F (../Core/Src/gpio.c)(0x62B45450)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\gpio.o --omf_browse 103test\gpio.crf --depend 103test\gpio.d)
 I (../Core/Inc/gpio.h)(0x62B45450)
 I (../Core/Inc/main.h)(0x62B45452)
@@ -970,7 +972,7 @@ I (../Core/Inc/tim.h)(0x62B45451)
 I (..\..\BSP\Inc\bsp_uart.h)(0x62B13A41)
 I (../Core/Inc/usart.h)(0x62B45451)
 I (../Core/Inc/adc.h)(0x62B45451)
-F (..\..\BSP\bsp_beep.c)(0x62B71FE2)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\bsp_beep.o --omf_browse 103test\bsp_beep.crf --depend 103test\bsp_beep.d)
+F (..\..\BSP\bsp_beep.c)(0x62B8169A)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\bsp_beep.o --omf_browse 103test\bsp_beep.crf --depend 103test\bsp_beep.d)
 I (..\..\BSP\Inc\bsp_beep.h)(0x62B71FE5)
 I (../Core/Inc/main.h)(0x62B45452)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x615309D4)
@@ -1119,7 +1121,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x615309D4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x615309D4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x615309D4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x615309D4)
-F (..\..\BSP\bsp_dac.c)(0x62B71CD1)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\bsp_dac.o --omf_browse 103test\bsp_dac.crf --depend 103test\bsp_dac.d)
+F (..\..\BSP\bsp_dac.c)(0x62B81A4F)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\bsp_dac.o --omf_browse 103test\bsp_dac.crf --depend 103test\bsp_dac.d)
 I (..\..\BSP\Inc\bsp_dac.h)(0x62B703EE)
 I (../Core/Inc/main.h)(0x62B45452)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x615309D4)
@@ -1165,9 +1167,9 @@ I (../Core/Inc/tim.h)(0x62B45451)
 I (..\..\BSP\Inc\bsp_uart.h)(0x62B13A41)
 I (../Core/Inc/usart.h)(0x62B45451)
 I (../Core/Inc/dac.h)(0x62B45451)
-F (..\..\BLL\Inc\bll.h)(0x62B13A26)()
-F (..\..\BLL\bll_beep.c)(0x62B71FF5)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\bll_beep.o --omf_browse 103test\bll_beep.crf --depend 103test\bll_beep.d)
-I (..\..\BSP\Inc\bsp_beep.h)(0x62B71FE5)
+F (..\..\BLL\Inc\bll.h)(0x62B8224A)()
+F (..\..\BLL\bll_beep.c)(0x62B81AAE)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\bll_beep.o --omf_browse 103test\bll_beep.crf --depend 103test\bll_beep.d)
+I (..\..\BLL\Inc\bll_beep.h)(0x62B8172C)
 I (../Core/Inc/main.h)(0x62B45452)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x615309D4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x62B45452)
@@ -1200,112 +1202,11 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x615309D4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x615309D4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x615309D4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x615309D4)
-I (..\..\BLL\Inc\bll_beep.h)(0x62B13A26)
-I (..\..\BLL\Inc\bll.h)(0x62B13A26)
+I (..\..\BLL\Inc\bll.h)(0x62B8224A)
 I (..\..\BSP\Inc\bsp.h)(0x62B71DB5)
 I (..\..\BSP\Inc\bsp_lcd.h)(0x62B45148)
 I (..\..\BSP\Inc\bsp_led.h)(0x62B720D0)
 I (..\..\BSP\Inc\bsp_key.h)(0x62B72060)
-I (..\..\BSP\Inc\bsp_adc.h)(0x62B72015)
-I (../Core/Inc/adc.h)(0x62B45451)
-I (..\..\BSP\Inc\bsp_dac.h)(0x62B703EE)
-I (../Core/Inc/dac.h)(0x62B45451)
-I (..\..\BSP\Inc\bsp_tim.h)(0x62B1323A)
-I (../Core/Inc/tim.h)(0x62B45451)
-I (..\..\BSP\Inc\bsp_uart.h)(0x62B13A41)
-I (../Core/Inc/usart.h)(0x62B45451)
-I (..\..\BLL\Inc\bll_signal_generator.h)(0x62B71DCB)
-I (..\..\BLL\Inc\bll_uart_send_data.h)(0x62B13A26)
-I (..\..\BLL\Inc\bll_setting_by_uart_receive_command.h)(0x62B13A26)
-I (..\..\BLL\Inc\bll_setting_by_key.h)(0x62B13A26)
-I (..\..\BLL\Inc\bll_setting.h)(0x62B718F6)
-F (..\..\BLL\bll_setting.c)(0x62B71D61)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\bll_setting.o --omf_browse 103test\bll_setting.crf --depend 103test\bll_setting.d)
-I (..\..\BSP\Inc\bsp.h)(0x62B71DB5)
-I (../Core/Inc/main.h)(0x62B45452)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x615309D4)
-I (../Core/Inc/stm32f1xx_hal_conf.h)(0x62B45452)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x615309D4)
-I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x615309D3)
-I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h)(0x615309D3)
-I (../Drivers/CMSIS/Include/core_cm3.h)(0x615309B2)
-I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025237E)
-I (../Drivers/CMSIS/Include/cmsis_version.h)(0x615309B2)
-I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x615309B2)
-I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x615309B2)
-I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h)(0x615309D3)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x615309D4)
-I (d:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025237E)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dac.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dac_ex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x615309D4)
-I (..\..\BSP\Inc\bsp_lcd.h)(0x62B45148)
-I (..\..\BSP\Inc\bsp_led.h)(0x62B720D0)
-I (..\..\BSP\Inc\bsp_key.h)(0x62B72060)
-I (..\..\BSP\Inc\bsp_beep.h)(0x62B71FE5)
-I (..\..\BSP\Inc\bsp_adc.h)(0x62B72015)
-I (../Core/Inc/adc.h)(0x62B45451)
-I (..\..\BSP\Inc\bsp_dac.h)(0x62B703EE)
-I (../Core/Inc/dac.h)(0x62B45451)
-I (..\..\BSP\Inc\bsp_tim.h)(0x62B1323A)
-I (../Core/Inc/tim.h)(0x62B45451)
-I (..\..\BSP\Inc\bsp_uart.h)(0x62B13A41)
-I (../Core/Inc/usart.h)(0x62B45451)
-I (..\..\BLL\Inc\bll_setting.h)(0x62B718F6)
-I (..\..\BLL\Inc\bll_signal_generator.h)(0x62B71DCB)
-I (..\..\BLL\Inc\signal_generator_system.h)(0x62B7E1A8)
-F (..\..\BLL\bll_setting_by_key.c)(0x62B720B4)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\bll_setting_by_key.o --omf_browse 103test\bll_setting_by_key.crf --depend 103test\bll_setting_by_key.d)
-I (..\..\BSP\Inc\bsp_key.h)(0x62B72060)
-I (../Core/Inc/main.h)(0x62B45452)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x615309D4)
-I (../Core/Inc/stm32f1xx_hal_conf.h)(0x62B45452)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x615309D4)
-I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x615309D3)
-I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h)(0x615309D3)
-I (../Drivers/CMSIS/Include/core_cm3.h)(0x615309B2)
-I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025237E)
-I (../Drivers/CMSIS/Include/cmsis_version.h)(0x615309B2)
-I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x615309B2)
-I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x615309B2)
-I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h)(0x615309D3)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x615309D4)
-I (d:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025237E)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dac.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dac_ex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x615309D4)
-I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x615309D4)
-I (..\..\BLL\Inc\bll.h)(0x62B13A26)
-I (..\..\BSP\Inc\bsp.h)(0x62B71DB5)
-I (..\..\BSP\Inc\bsp_lcd.h)(0x62B45148)
-I (..\..\BSP\Inc\bsp_led.h)(0x62B720D0)
 I (..\..\BSP\Inc\bsp_beep.h)(0x62B71FE5)
 I (..\..\BSP\Inc\bsp_adc.h)(0x62B72015)
 I (../Core/Inc/adc.h)(0x62B45451)
@@ -1319,11 +1220,112 @@ I (..\..\BLL\Inc\bll_signal_generator.h)(0x62B71DCB)
 I (..\..\BLL\Inc\bll_uart_send_data.h)(0x62B13A26)
 I (..\..\BLL\Inc\bll_setting_by_uart_receive_command.h)(0x62B13A26)
 I (..\..\BLL\Inc\bll_setting_by_key.h)(0x62B13A26)
-I (..\..\BLL\Inc\bll_beep.h)(0x62B13A26)
 I (..\..\BLL\Inc\bll_setting.h)(0x62B718F6)
-I (..\..\UI\Inc\ui.h)(0x62B13ADE)
-I (..\..\BLL\Inc\signal_generator_system.h)(0x62B7E1A8)
-F (..\..\BLL\bll_setting_by_uart_receive_command.c)(0x62B71E67)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\bll_setting_by_uart_receive_command.o --omf_browse 103test\bll_setting_by_uart_receive_command.crf --depend 103test\bll_setting_by_uart_receive_command.d)
+F (..\..\BLL\bll_setting.c)(0x62B81AEF)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\bll_setting.o --omf_browse 103test\bll_setting.crf --depend 103test\bll_setting.d)
+I (..\..\BSP\Inc\bsp.h)(0x62B71DB5)
+I (../Core/Inc/main.h)(0x62B45452)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x615309D4)
+I (../Core/Inc/stm32f1xx_hal_conf.h)(0x62B45452)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x615309D4)
+I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x615309D3)
+I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h)(0x615309D3)
+I (../Drivers/CMSIS/Include/core_cm3.h)(0x615309B2)
+I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025237E)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x615309B2)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x615309B2)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x615309B2)
+I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h)(0x615309D3)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x615309D4)
+I (d:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025237E)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dac.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dac_ex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x615309D4)
+I (..\..\BSP\Inc\bsp_lcd.h)(0x62B45148)
+I (..\..\BSP\Inc\bsp_led.h)(0x62B720D0)
+I (..\..\BSP\Inc\bsp_key.h)(0x62B72060)
+I (..\..\BSP\Inc\bsp_beep.h)(0x62B71FE5)
+I (..\..\BSP\Inc\bsp_adc.h)(0x62B72015)
+I (../Core/Inc/adc.h)(0x62B45451)
+I (..\..\BSP\Inc\bsp_dac.h)(0x62B703EE)
+I (../Core/Inc/dac.h)(0x62B45451)
+I (..\..\BSP\Inc\bsp_tim.h)(0x62B1323A)
+I (../Core/Inc/tim.h)(0x62B45451)
+I (..\..\BSP\Inc\bsp_uart.h)(0x62B13A41)
+I (../Core/Inc/usart.h)(0x62B45451)
+I (..\..\BLL\Inc\bll_setting.h)(0x62B718F6)
+I (..\..\BLL\Inc\bll_signal_generator.h)(0x62B71DCB)
+I (..\..\BLL\Inc\signal_generator_system.h)(0x62B817EF)
+F (..\..\BLL\bll_setting_by_key.c)(0x62B81787)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\bll_setting_by_key.o --omf_browse 103test\bll_setting_by_key.crf --depend 103test\bll_setting_by_key.d)
+I (..\..\BSP\Inc\bsp_key.h)(0x62B72060)
+I (../Core/Inc/main.h)(0x62B45452)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x615309D4)
+I (../Core/Inc/stm32f1xx_hal_conf.h)(0x62B45452)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h)(0x615309D4)
+I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h)(0x615309D3)
+I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h)(0x615309D3)
+I (../Drivers/CMSIS/Include/core_cm3.h)(0x615309B2)
+I (d:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025237E)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x615309B2)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x615309B2)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x615309B2)
+I (../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h)(0x615309D3)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x615309D4)
+I (d:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025237E)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dac.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dac_ex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x615309D4)
+I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x615309D4)
+I (..\..\BLL\Inc\bll.h)(0x62B8224A)
+I (..\..\BSP\Inc\bsp.h)(0x62B71DB5)
+I (..\..\BSP\Inc\bsp_lcd.h)(0x62B45148)
+I (..\..\BSP\Inc\bsp_led.h)(0x62B720D0)
+I (..\..\BSP\Inc\bsp_beep.h)(0x62B71FE5)
+I (..\..\BSP\Inc\bsp_adc.h)(0x62B72015)
+I (../Core/Inc/adc.h)(0x62B45451)
+I (..\..\BSP\Inc\bsp_dac.h)(0x62B703EE)
+I (../Core/Inc/dac.h)(0x62B45451)
+I (..\..\BSP\Inc\bsp_tim.h)(0x62B1323A)
+I (../Core/Inc/tim.h)(0x62B45451)
+I (..\..\BSP\Inc\bsp_uart.h)(0x62B13A41)
+I (../Core/Inc/usart.h)(0x62B45451)
+I (..\..\BLL\Inc\bll_signal_generator.h)(0x62B71DCB)
+I (..\..\BLL\Inc\bll_uart_send_data.h)(0x62B13A26)
+I (..\..\BLL\Inc\bll_setting_by_uart_receive_command.h)(0x62B13A26)
+I (..\..\BLL\Inc\bll_setting_by_key.h)(0x62B13A26)
+I (..\..\BLL\Inc\bll_beep.h)(0x62B8172C)
+I (..\..\BLL\Inc\bll_setting.h)(0x62B718F6)
+I (..\..\UI\Inc\ui.h)(0x62B818AC)
+I (..\..\BLL\Inc\signal_generator_system.h)(0x62B817EF)
+F (..\..\BLL\bll_setting_by_uart_receive_command.c)(0x62B81B20)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\bll_setting_by_uart_receive_command.o --omf_browse 103test\bll_setting_by_uart_receive_command.crf --depend 103test\bll_setting_by_uart_receive_command.d)
 I (..\..\BLL\Inc\bll_setting_by_uart_receive_command.h)(0x62B13A26)
 I (../Core/Inc/main.h)(0x62B45452)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x615309D4)
@@ -1373,9 +1375,11 @@ I (..\..\BSP\Inc\bsp_tim.h)(0x62B1323A)
 I (../Core/Inc/tim.h)(0x62B45451)
 I (d:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
-I (..\..\BLL\Inc\signal_generator_system.h)(0x62B7E1A8)
-F (..\..\BLL\bll_signal_generator.c)(0x62B71BD8)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\bll_signal_generator.o --omf_browse 103test\bll_signal_generator.crf --depend 103test\bll_signal_generator.d)
-I (..\..\BLL\Inc\bll.h)(0x62B13A26)
+I (..\..\BLL\Inc\signal_generator_system.h)(0x62B817EF)
+I (..\..\BLL\Inc\bll_beep.h)(0x62B8172C)
+I (..\..\UI\Inc\ui.h)(0x62B818AC)
+F (..\..\BLL\bll_signal_generator.c)(0x62B82325)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\bll_signal_generator.o --omf_browse 103test\bll_signal_generator.crf --depend 103test\bll_signal_generator.d)
+I (..\..\BLL\Inc\bll.h)(0x62B8224A)
 I (../Core/Inc/main.h)(0x62B45452)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x615309D4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x62B45452)
@@ -1425,11 +1429,11 @@ I (..\..\BLL\Inc\bll_signal_generator.h)(0x62B71DCB)
 I (..\..\BLL\Inc\bll_uart_send_data.h)(0x62B13A26)
 I (..\..\BLL\Inc\bll_setting_by_uart_receive_command.h)(0x62B13A26)
 I (..\..\BLL\Inc\bll_setting_by_key.h)(0x62B13A26)
-I (..\..\BLL\Inc\bll_beep.h)(0x62B13A26)
+I (..\..\BLL\Inc\bll_beep.h)(0x62B8172C)
 I (..\..\BLL\Inc\bll_setting.h)(0x62B718F6)
 I (d:\Keil_v5\ARM\ARMCC\include\math.h)(0x60252378)
 I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
-I (..\..\BLL\Inc\signal_generator_system.h)(0x62B7E1A8)
+I (..\..\BLL\Inc\signal_generator_system.h)(0x62B817EF)
 F (..\..\BLL\bll_uart_send_data.c)(0x62B71B71)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\bll_uart_send_data.o --omf_browse 103test\bll_uart_send_data.crf --depend 103test\bll_uart_send_data.d)
 I (..\..\BLL\Inc\bll_uart_send_data.h)(0x62B13A26)
 I (../Core/Inc/main.h)(0x62B45452)
@@ -1466,7 +1470,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x615309D4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x615309D4)
 I (..\..\BSP\Inc\bsp_uart.h)(0x62B13A41)
 I (../Core/Inc/usart.h)(0x62B45451)
-I (..\..\BLL\Inc\bll.h)(0x62B13A26)
+I (..\..\BLL\Inc\bll.h)(0x62B8224A)
 I (..\..\BSP\Inc\bsp.h)(0x62B71DB5)
 I (..\..\BSP\Inc\bsp_lcd.h)(0x62B45148)
 I (..\..\BSP\Inc\bsp_led.h)(0x62B720D0)
@@ -1481,13 +1485,13 @@ I (../Core/Inc/tim.h)(0x62B45451)
 I (..\..\BLL\Inc\bll_signal_generator.h)(0x62B71DCB)
 I (..\..\BLL\Inc\bll_setting_by_uart_receive_command.h)(0x62B13A26)
 I (..\..\BLL\Inc\bll_setting_by_key.h)(0x62B13A26)
-I (..\..\BLL\Inc\bll_beep.h)(0x62B13A26)
+I (..\..\BLL\Inc\bll_beep.h)(0x62B8172C)
 I (..\..\BLL\Inc\bll_setting.h)(0x62B718F6)
 I (d:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (d:\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
-I (..\..\BLL\Inc\signal_generator_system.h)(0x62B7E1A8)
-F (..\..\BLL\signal_generator_system.c)(0x62B7E294)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\signal_generator_system.o --omf_browse 103test\signal_generator_system.crf --depend 103test\signal_generator_system.d)
-I (..\..\BLL\Inc\signal_generator_system.h)(0x62B7E1A8)
+I (..\..\BLL\Inc\signal_generator_system.h)(0x62B817EF)
+F (..\..\BLL\signal_generator_system.c)(0x62B81899)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\signal_generator_system.o --omf_browse 103test\signal_generator_system.crf --depend 103test\signal_generator_system.d)
+I (..\..\BLL\Inc\signal_generator_system.h)(0x62B817EF)
 I (../Core/Inc/main.h)(0x62B45452)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x615309D4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x62B45452)
@@ -1533,16 +1537,16 @@ I (..\..\BSP\Inc\bsp_tim.h)(0x62B1323A)
 I (../Core/Inc/tim.h)(0x62B45451)
 I (..\..\BSP\Inc\bsp_uart.h)(0x62B13A41)
 I (../Core/Inc/usart.h)(0x62B45451)
-I (..\..\BLL\Inc\bll.h)(0x62B13A26)
+I (..\..\BLL\Inc\bll.h)(0x62B8224A)
 I (..\..\BLL\Inc\bll_signal_generator.h)(0x62B71DCB)
 I (..\..\BLL\Inc\bll_uart_send_data.h)(0x62B13A26)
 I (..\..\BLL\Inc\bll_setting_by_uart_receive_command.h)(0x62B13A26)
 I (..\..\BLL\Inc\bll_setting_by_key.h)(0x62B13A26)
-I (..\..\BLL\Inc\bll_beep.h)(0x62B13A26)
+I (..\..\BLL\Inc\bll_beep.h)(0x62B8172C)
 I (..\..\BLL\Inc\bll_setting.h)(0x62B718F6)
-I (..\..\UI\Inc\ui.h)(0x62B13ADE)
-F (..\..\UI\ui.c)(0x62B720D8)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\ui.o --omf_browse 103test\ui.crf --depend 103test\ui.d)
-I (..\..\UI\Inc\ui.h)(0x62B13ADE)
+I (..\..\UI\Inc\ui.h)(0x62B818AC)
+F (..\..\UI\ui.c)(0x62B818A5)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ..\..\BLL\Inc -I ..\..\BSP\Inc -I ..\..\UI\Inc-I.\RTE\_103test-Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include-Id:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F10X_HD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xE-o 103test\ui.o --omf_browse 103test\ui.crf --depend 103test\ui.d)
+I (..\..\UI\Inc\ui.h)(0x62B818AC)
 I (../Core/Inc/main.h)(0x62B45452)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x615309D4)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x62B45452)
@@ -1588,12 +1592,12 @@ I (..\..\BSP\Inc\bsp_tim.h)(0x62B1323A)
 I (../Core/Inc/tim.h)(0x62B45451)
 I (..\..\BSP\Inc\bsp_uart.h)(0x62B13A41)
 I (../Core/Inc/usart.h)(0x62B45451)
-I (..\..\BLL\Inc\bll.h)(0x62B13A26)
+I (..\..\BLL\Inc\bll.h)(0x62B8224A)
 I (..\..\BLL\Inc\bll_signal_generator.h)(0x62B71DCB)
 I (..\..\BLL\Inc\bll_uart_send_data.h)(0x62B13A26)
 I (..\..\BLL\Inc\bll_setting_by_uart_receive_command.h)(0x62B13A26)
 I (..\..\BLL\Inc\bll_setting_by_key.h)(0x62B13A26)
-I (..\..\BLL\Inc\bll_beep.h)(0x62B13A26)
+I (..\..\BLL\Inc\bll_beep.h)(0x62B8172C)
 I (..\..\BLL\Inc\bll_setting.h)(0x62B718F6)
 I (d:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
-I (..\..\BLL\Inc\signal_generator_system.h)(0x62B7E1A8)
+I (..\..\BLL\Inc\signal_generator_system.h)(0x62B817EF)

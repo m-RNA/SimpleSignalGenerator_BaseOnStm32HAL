@@ -20,19 +20,6 @@ Signal_Generator_Type Signal_Generator = {
     .Set.Vpp_Update = BLL_Signal_Vpp_Update,
 };
 
-UI_Type UI = {
-    .Init = UI_Init,
-    .UpdateTask = UI_Update_Task,
-    .Reflash = UI_Updata_Setting,
-};
-
-BEEP_Type BEEP = {
-    .Init = (void *)0,
-    .Task = BEEP_Task,
-    .ON_Tick = BLL_Beep_On_Tick,
-    .Ctrl = BSP_BEEP_Crtl,
-};
-
 KEY_Type KEY = {
     .Init = (void *)0,
     .Task = KEY_Task,
@@ -46,8 +33,6 @@ Community_Type Community = {
     .SendDataAllow = BLL_Uart_Send_Data_Allow,
 };
 
-PUI_Type gpUI = &UI;
 PKEY_Type gpKEY = &KEY;
-PBEEP_Type gpBEEP = &BEEP;
 PCommunity_Type gpCommunity = &Community;
 PSignal_Generator_Type gpSignal_Generator = &Signal_Generator;

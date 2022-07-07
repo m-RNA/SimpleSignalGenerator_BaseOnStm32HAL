@@ -29,6 +29,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "signal_generator_system.h"
+#include "bll_beep.h"
+#include "ui.h"
 
 /* USER CODE END Includes */
 

@@ -2,10 +2,14 @@
 #define __UI_H_
 
 #include "main.h"
-#include "ui.h"
 
-void UI_Init(void);
-void UI_Updata_Setting(void);
-void UI_Update_Task(void); // LCDË¢ĞÂÈÎÎñ
+typedef struct
+{
+    void (*Init)(void);
+    void (*UpdateTask)(void);
+    void (*Reflash)(void);
+} UI_Type, *pUI_Type;
+
+extern pUI_Type gpUI;
 
 #endif

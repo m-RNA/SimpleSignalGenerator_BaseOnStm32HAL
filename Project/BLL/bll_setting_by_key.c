@@ -5,6 +5,7 @@
 #include "ui.h"
 #include "tim.h"
 #include "signal_generator_system.h"
+#include "bll_beep.h"
 
 static vu32 SW_Timer_Tick = 0;
 static vu32 SW_Timer_KEY_Hold_Tick = 0;

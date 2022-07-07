@@ -10,7 +10,6 @@
 #include "bll_beep.h"
 #include "bll_setting.h"
 //#include "bll_led.h"
-//#include "bll_adc.h"
 
 // 软件定时器 宏定义
 #define Task_Delay(MS)\

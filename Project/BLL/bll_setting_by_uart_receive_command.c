@@ -7,6 +7,8 @@
 #include "stdio.h"
 #include "string.h"
 #include "signal_generator_system.h"
+#include "bll_beep.h"
+#include "ui.h"
 
 #define RX_MAX_LENTH 100         // UART最大接收长度
 static vu32 SW_Timer_Tick = {0}; // 软件定时器数组
@@ -16,7 +18,7 @@ u8 Rx_Temp = 0;                   // UART中断接收缓存
 u8 Rx_Buffer[RX_MAX_LENTH] = {0}; // UART接收缓存
 
 // 开启串口接收中断
-void Receive_Uart_Command_Init(void)
+inline void Receive_Uart_Command_Init(void)
 {
     HAL_UART_Receive_IT(&huart1, &Rx_Temp, 1);
 }
